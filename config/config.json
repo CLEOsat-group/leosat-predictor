@@ -1,0 +1,64 @@
+{
+    "visibility_margin": 5,
+    "default_location": {
+        "name": "Ckoirama Observatory, Universidad de Antofagasta, Chile",
+        "latitude": -24.089133,
+        "longitude": -69.930589,
+        "altitude": 966.0
+    },
+    "TLE_API": "https://default-api.com",
+    "tle_folder": "data/tle/",
+    "tle_sources": {
+        "starlink": {
+            "url": "https://celestrak.org/NORAD/elements/supplemental/sup-gp.php?FILE=starlink&FORMAT=tle",
+            "batch_download": true,
+            "default_satellites": [],
+            "category": "LEO"
+        },
+        "kuiper": {
+            "url": "https://celestrak.org/NORAD/elements/supplemental/sup-gp.php?FILE=kuiper&FORMAT=tle",
+            "batch_download": true,
+            "default_satellites": [],
+            "category": "LEO"
+        },
+        "ast": {
+            "url": "https://celestrak.org/NORAD/elements/supplemental/sup-gp.php?FILE=ast&FORMAT=tle",
+            "batch_download": true,
+            "default_satellites": [],
+            "category": "LEO"
+        },
+        "noaa": {
+            "url": "https://celestrak.org/NORAD/elements/gp.php?GROUP=noaa&FORMAT=tle",
+            "batch_download": true,
+            "default_satellites": [
+                "NOAA 20 (JPSS-1)",
+                "NOAA 21 (JPSS-2)",
+                "SUOMI NPP"
+            ],
+            "category": "VIIRS"
+        },
+        "oneweb": {
+            "url": "https://celestrak.org/NORAD/elements/supplemental/sup-gp.php?FILE=oneweb&FORMAT=tle",
+            "batch_download": true,
+            "default_satellites": [],
+            "category": "LEO"
+        }
+    },
+    "tle_update_interval_hours": 8,
+    "tle_expiration_hours": 8,
+    "default_days": 2,
+    "default_interval": 1,
+    "default_interval_unit": "seconds",
+    "allow_batch_download": true,
+    "auto_save_predictions": false,
+    "theme": "light",
+    "visibility_constraints": {
+        "lowest_altitude_satellite": 30.0,
+        "sun_zenith_highest": 112.0,
+        "sun_zenith_lowest": 99.0
+    },
+    "observation_planner": {
+        "default_plan_pattern": "leosat_obs_plan_{date}.csv",
+        "legend_page_size": 5
+    }
+}

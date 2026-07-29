@@ -1,0 +1,557 @@
+{
+    "visibility_margin": 5.0,
+    "default_location": {
+        "name": "CDK20 - Ckoirama Observatory, Universidad de Antofagasta, Chile",
+        "latitude": -24.089222,
+        "longitude": -69.930465,
+        "altitude": 961.0
+    },
+    "TLE_API": "https://default-api.com",
+    "tle_folder": "data/tle/",
+    "tle_sources": {
+        "starlink": {
+            "url": "https://celestrak.org/NORAD/elements/supplemental/sup-gp.php?FILE=starlink&FORMAT=tle",
+            "batch_download": true,
+            "default_satellites": [],
+            "category": "LEO"
+        },
+        "kuiper": {
+            "url": "https://celestrak.org/NORAD/elements/supplemental/sup-gp.php?FILE=kuiper&FORMAT=tle",
+            "batch_download": true,
+            "default_satellites": [],
+            "category": "LEO"
+        },
+        "ast": {
+            "url": "https://celestrak.org/NORAD/elements/supplemental/sup-gp.php?FILE=ast&FORMAT=tle",
+            "batch_download": true,
+            "default_satellites": [],
+            "category": "LEO"
+        },
+        "noaa": {
+            "url": "https://celestrak.org/NORAD/elements/gp.php?GROUP=noaa&FORMAT=tle",
+            "batch_download": true,
+            "default_satellites": [
+                "NOAA 20 (JPSS-1)",
+                "NOAA 21 (JPSS-2)",
+                "SUOMI NPP"
+            ],
+            "category": "VIIRS"
+        },
+        "oneweb": {
+            "url": "https://celestrak.org/NORAD/elements/supplemental/sup-gp.php?FILE=oneweb&FORMAT=tle",
+            "batch_download": true,
+            "default_satellites": [],
+            "category": "LEO"
+        }
+    },
+    "tle_update_interval_hours": 8.0,
+    "tle_expiration_hours": 8.0,
+    "default_days": 2,
+    "default_interval": 1,
+    "default_interval_unit": "seconds",
+    "allow_batch_download": true,
+    "auto_save_predictions": false,
+    "theme": "dark",
+    "visibility_constraints": {
+        "lowest_altitude_satellite": 30.0,
+        "sun_zenith_highest": 121.0,
+        "sun_zenith_lowest": 98.0
+    },
+    "observation_planner": {
+        "default_plan_pattern": "leosat_obs_plan_{date}.csv",
+        "legend_page_size": 5,
+        "exposure_time_sec": 6.0,
+        "time_range_sec": 0.0,
+        "min_elevation_deg": 20.0,
+        "tolerance_sec": 1.0,
+        "spacing_min": 3.0,
+        "default_mode": "automatic",
+        "filename_pattern": "leosat_obs_plan_{date}.csv",
+        "visibility": {
+            "columns": {
+                "satellite": {
+                    "aliases": [
+                        "satellite",
+                        "Satellite",
+                        "SatName",
+                        "Sat_Name",
+                        "Sat_ID",
+                        "sat_name",
+                        "satellite_id"
+                    ],
+                    "display": "Satellite",
+                    "width": 140,
+                    "hidden": false
+                },
+                "date_ut": {
+                    "aliases": [
+                        "Obs_Time",
+                        "obs_time",
+                        "Date [UT]",
+                        "date[UT]",
+                        "date_ut",
+                        "timestamp"
+                    ],
+                    "display": "Date [UT]",
+                    "width": 160,
+                    "hidden": false
+                },
+                "ra": {
+                    "aliases": [
+                        "SatRA[hr]",
+                        "RA [hr]",
+                        "SatRA",
+                        "sat_ra",
+                        "ra",
+                        "RA"
+                    ],
+                    "display": "RA [hr]",
+                    "width": 100,
+                    "hidden": false
+                },
+                "dec": {
+                    "aliases": [
+                        "SatDEC[deg]",
+                        "DEC [deg]",
+                        "SatDEC",
+                        "sat_dec",
+                        "dec",
+                        "DEC"
+                    ],
+                    "display": "DEC [deg]",
+                    "width": 100,
+                    "hidden": false
+                },
+                "elev": {
+                    "aliases": [
+                        "elev",
+                        "SatElevation[deg]",
+                        "Elevation [deg]",
+                        "Elev. [deg]",
+                        "Elevation",
+                        "SatElev",
+                        "sat_elev"
+                    ],
+                    "display": "Elev. [deg]",
+                    "width": 120,
+                    "hidden": false
+                },
+                "solar_phase_angle": {
+                    "aliases": [
+                        "SolarPhaseAngle",
+                        "solar_phase_angle",
+                        "Solar Phase Angle",
+                        "Solar Phase Angle [deg]",
+                        "Solar Phase [deg]",
+                        "solar_phase_angle_deg"
+                    ],
+                    "display": "Solar Phase [deg]",
+                    "width": 135,
+                    "hidden": false
+                },
+                "az": {
+                    "aliases": [
+                        "SatAz",
+                        "sat_az",
+                        "Az. [deg]",
+                        "Azimuth [deg]",
+                        "Azimuth",
+                        "az"
+                    ],
+                    "display": "Az. [deg]",
+                    "width": 120,
+                    "hidden": false
+                },
+                "satellite_altitude_km": {
+                    "aliases": [
+                        "SatAlt",
+                        "sat_alt",
+                        "SatAlt[km]",
+                        "Altitude [km]",
+                        "satellite_altitude_km"
+                    ],
+                    "display": "Sat. Alt. [km]",
+                    "width": 120,
+                    "hidden": false
+                },
+                "satellite_distance_km": {
+                    "aliases": [
+                        "SatDist",
+                        "sat_dist",
+                        "SatDistance[km]",
+                        "Distance [km]",
+                        "satellite_distance_km"
+                    ],
+                    "display": "Sat. Dist. [km]",
+                    "width": 120,
+                    "hidden": false
+                },
+                "solar_zenith_angle": {
+                    "aliases": [
+                        "SunZenithAngle",
+                        "sun_zenith_angle",
+                        "Sun Zenith Angle",
+                        "solar_zenith_angle"
+                    ],
+                    "display": "Sun Zenith [deg]",
+                    "width": 135,
+                    "hidden": false
+                },
+                "local_time": {
+                    "aliases": [
+                        "Local_Time",
+                        "local_time",
+                        "Local Time"
+                    ],
+                    "display": "Local Time",
+                    "width": 160,
+                    "hidden": false
+                },
+                "satellite_longitude": {
+                    "aliases": [
+                        "SatLon",
+                        "sat_lon",
+                        "SatLongitude",
+                        "Longitude [deg]",
+                        "satellite_longitude"
+                    ],
+                    "display": "Sat. Lon. [deg]",
+                    "width": 120,
+                    "hidden": false
+                },
+                "satellite_latitude": {
+                    "aliases": [
+                        "SatLat",
+                        "sat_lat",
+                        "SatLatitude",
+                        "Latitude [deg]",
+                        "satellite_latitude"
+                    ],
+                    "display": "Sat. Lat. [deg]",
+                    "width": 120,
+                    "hidden": false
+                },
+                "sun_ra": {
+                    "aliases": [
+                        "SunRA",
+                        "sun_ra",
+                        "Sun RA"
+                    ],
+                    "display": "Sun RA",
+                    "width": 100,
+                    "hidden": false
+                },
+                "sun_dec": {
+                    "aliases": [
+                        "SunDEC",
+                        "sun_dec",
+                        "Sun DEC"
+                    ],
+                    "display": "Sun DEC",
+                    "width": 100,
+                    "hidden": false
+                },
+                "_checked": {
+                    "aliases": [
+                        "_checked"
+                    ],
+                    "display": "✓",
+                    "width": 25,
+                    "hidden": false
+                },
+                "date_ts": {
+                    "aliases": [
+                        "date_ts"
+                    ],
+                    "display": "date_ts",
+                    "width": 100,
+                    "hidden": true
+                },
+                "global_index": {
+                    "aliases": [
+                        "global_index"
+                    ],
+                    "display": "global_index",
+                    "width": 100,
+                    "hidden": true
+                },
+                "base_index": {
+                    "aliases": [
+                        "base_index"
+                    ],
+                    "display": "base_index",
+                    "width": 100,
+                    "hidden": true
+                },
+                "local_index": {
+                    "aliases": [
+                        "local_index"
+                    ],
+                    "display": "local_index",
+                    "width": 100,
+                    "hidden": true
+                }
+            }
+        },
+        "column_mapping": {
+            "satellite": {
+                "aliases": [
+                    "satellite",
+                    "Satellite",
+                    "SatName",
+                    "Sat_Name",
+                    "Sat_ID",
+                    "sat_name",
+                    "satellite_id"
+                ],
+                "display": "Satellite",
+                "width": 140,
+                "hidden": false
+            },
+            "date_ut": {
+                "aliases": [
+                    "Obs_Time",
+                    "obs_time",
+                    "Date [UT]",
+                    "date[UT]",
+                    "date_ut",
+                    "timestamp"
+                ],
+                "display": "Date [UT]",
+                "width": 160,
+                "hidden": false
+            },
+            "ra": {
+                "aliases": [
+                    "SatRA[hr]",
+                    "RA [hr]",
+                    "SatRA",
+                    "sat_ra",
+                    "ra",
+                    "RA"
+                ],
+                "display": "RA [hr]",
+                "width": 100,
+                "hidden": false
+            },
+            "dec": {
+                "aliases": [
+                    "SatDEC[deg]",
+                    "DEC [deg]",
+                    "SatDEC",
+                    "sat_dec",
+                    "dec",
+                    "DEC"
+                ],
+                "display": "DEC [deg]",
+                "width": 100,
+                "hidden": false
+            },
+            "elev": {
+                "aliases": [
+                    "elev",
+                    "SatElevation[deg]",
+                    "Elevation [deg]",
+                    "Elev. [deg]",
+                    "Elevation",
+                    "SatElev",
+                    "sat_elev"
+                ],
+                "display": "Elev. [deg]",
+                "width": 120,
+                "hidden": false
+            },
+            "solar_phase_angle": {
+                "aliases": [
+                    "SolarPhaseAngle",
+                    "solar_phase_angle",
+                    "Solar Phase Angle",
+                    "Solar Phase Angle [deg]",
+                    "Solar Phase [deg]",
+                    "solar_phase_angle_deg"
+                ],
+                "display": "Solar Phase [deg]",
+                "width": 135,
+                "hidden": false
+            },
+            "az": {
+                "aliases": [
+                    "SatAz",
+                    "sat_az",
+                    "Az. [deg]",
+                    "Azimuth [deg]",
+                    "Azimuth",
+                    "az"
+                ],
+                "display": "Az. [deg]",
+                "width": 120,
+                "hidden": false
+            },
+            "satellite_altitude_km": {
+                "aliases": [
+                    "SatAlt",
+                    "sat_alt",
+                    "SatAlt[km]",
+                    "Altitude [km]",
+                    "satellite_altitude_km"
+                ],
+                "display": "Sat. Alt. [km]",
+                "width": 120,
+                "hidden": false
+            },
+            "satellite_distance_km": {
+                "aliases": [
+                    "SatDist",
+                    "sat_dist",
+                    "SatDistance[km]",
+                    "Distance [km]",
+                    "satellite_distance_km"
+                ],
+                "display": "Sat. Dist. [km]",
+                "width": 120,
+                "hidden": false
+            },
+            "solar_zenith_angle": {
+                "aliases": [
+                    "SunZenithAngle",
+                    "sun_zenith_angle",
+                    "Sun Zenith Angle",
+                    "solar_zenith_angle"
+                ],
+                "display": "Sun Zenith [deg]",
+                "width": 135,
+                "hidden": false
+            },
+            "local_time": {
+                "aliases": [
+                    "Local_Time",
+                    "local_time",
+                    "Local Time"
+                ],
+                "display": "Local Time",
+                "width": 160,
+                "hidden": false
+            },
+            "satellite_longitude": {
+                "aliases": [
+                    "SatLon",
+                    "sat_lon",
+                    "SatLongitude",
+                    "Longitude [deg]",
+                    "satellite_longitude"
+                ],
+                "display": "Sat. Lon. [deg]",
+                "width": 120,
+                "hidden": false
+            },
+            "satellite_latitude": {
+                "aliases": [
+                    "SatLat",
+                    "sat_lat",
+                    "SatLatitude",
+                    "Latitude [deg]",
+                    "satellite_latitude"
+                ],
+                "display": "Sat. Lat. [deg]",
+                "width": 120,
+                "hidden": false
+            },
+            "sun_ra": {
+                "aliases": [
+                    "SunRA",
+                    "sun_ra",
+                    "Sun RA"
+                ],
+                "display": "Sun RA",
+                "width": 100,
+                "hidden": false
+            },
+            "sun_dec": {
+                "aliases": [
+                    "SunDEC",
+                    "sun_dec",
+                    "Sun DEC"
+                ],
+                "display": "Sun DEC",
+                "width": 100,
+                "hidden": false
+            },
+            "_checked": {
+                "aliases": [
+                    "_checked"
+                ],
+                "display": "✓",
+                "width": 25,
+                "hidden": false
+            },
+            "date_ts": {
+                "aliases": [
+                    "date_ts"
+                ],
+                "display": "date_ts",
+                "width": 100,
+                "hidden": true
+            },
+            "global_index": {
+                "aliases": [
+                    "global_index"
+                ],
+                "display": "global_index",
+                "width": 100,
+                "hidden": true
+            },
+            "base_index": {
+                "aliases": [
+                    "base_index"
+                ],
+                "display": "base_index",
+                "width": 100,
+                "hidden": true
+            },
+            "local_index": {
+                "aliases": [
+                    "local_index"
+                ],
+                "display": "local_index",
+                "width": 100,
+                "hidden": true
+            }
+        },
+        "default_plan_method": "stratified_solar_phase_sample",
+        "default_sampling_metric": "solar_phase",
+        "default_binning_mode": "fixed_width",
+        "default_sample_bins": 6,
+        "default_bin_width_deg": 5.0,
+        "custom_elevation_bin_edges": [],
+        "custom_solar_phase_bin_edges": [],
+        "random_seed": 12345,
+        "optimization_enabled": true,
+        "optimization_trials": 32,
+        "candidate_depth": 5,
+        "optimization_objective": "slew_aware",
+        "local_repair_enabled": true,
+        "local_repair_max_additions": 6,
+        "local_repair_candidate_limit": 5000,
+        "local_repair_attempt_limit": 20000,
+        "transition_constraint_mode": "physical_transition",
+        "transition_safety_margin_sec": 5.0,
+        "default_coordinate_format": "compact",
+        "slew_diagnostics_enabled": true,
+        "slew_az_rate_deg_per_sec": 2.0,
+        "slew_alt_rate_deg_per_sec": 1.0,
+        "slew_settle_time_sec": 3.0,
+        "slew_acquisition_time_sec": 10.0,
+        "slew_exposure_time_sec": 2.0,
+        "slew_transition_sample_limit": 5000
+    },
+    "prediction_range_precise": "evening",
+    "prediction_range": "evening",
+    "days": 3,
+    "interval": 1,
+    "interval_unit": "seconds",
+    "prediction_range_overpass": "night",
+    "lowest_altitude_satellite": 30,
+    "sun_zenith_highest": 121,
+    "sun_zenith_lowest": 98,
+    "margin": 5
+}

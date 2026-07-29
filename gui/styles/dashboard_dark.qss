@@ -1,0 +1,1044 @@
+/* Generated from dashboard.qss.in; do not edit manually. */
+/* gui-theme: dark */
+QMainWindow#guiRoot {
+    background: #111820;
+}
+
+QWidget#guiCentral {
+    background: #111820;
+    color: #E5ECF3;
+    font-family: "Segoe UI", "Inter", "Arial", sans-serif;
+    font-size: 12px;
+}
+
+QFrame#guiHeader {
+    background: #17212B;
+    border: 1px solid #344658;
+    border-radius: 12px;
+}
+
+QLabel#guiProductTitle {
+    color: #E5ECF3;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+QLabel#guiContextLabel {
+    color: #ABB8C6;
+    font-size: 12px;
+}
+
+QFrame#guiHeaderStatusWidget {
+    background: #17212B;
+    border: 1px solid #344658;
+    border-radius: 10px;
+}
+
+QFrame#guiHeaderStatusWidget[level="ready"] {
+    border-color: #344658;
+}
+
+QFrame#guiHeaderStatusWidget[level="info"] {
+    border-color: #3473A5;
+}
+
+QFrame#guiHeaderStatusWidget[level="success"] {
+    border-color: #2F7D5A;
+}
+
+QFrame#guiHeaderStatusWidget[level="warning"] {
+    border-color: #D49A3A;
+}
+
+QFrame#guiHeaderStatusWidget[level="error"] {
+    border-color: #A83D49;
+}
+
+QFrame#guiHeaderStatusWidget[level="busy"] {
+    border-color: #3473A5;
+}
+
+QLabel#guiHeaderStatusLevel {
+    border-radius: 8px;
+    padding: 3px 8px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+}
+
+QLabel#guiHeaderStatusLevel[level="ready"] {
+    background: #17212B;
+    color: #E5ECF3;
+}
+
+QLabel#guiHeaderStatusLevel[level="info"] {
+    background: #1D3347;
+    color: #3473A5;
+}
+
+QLabel#guiHeaderStatusLevel[level="success"] {
+    background: #1B382D;
+    color: #2F7D5A;
+}
+
+QLabel#guiHeaderStatusLevel[level="warning"] {
+    background: #3A2E19;
+    color: #D49A3A;
+}
+
+QLabel#guiHeaderStatusLevel[level="error"] {
+    background: #3B2228;
+    color: #A83D49;
+}
+
+QLabel#guiHeaderStatusLevel[level="busy"] {
+    background: #1D3347;
+    color: #3473A5;
+}
+
+QLabel#guiHeaderStatusMessage {
+    color: #E5ECF3;
+    font-weight: 600;
+}
+
+
+QWidget#guiNavigationRail {
+    background: #17212B;
+    border: 1px solid #344658;
+    border-radius: 12px;
+}
+
+QLabel#guiNavigationTitle {
+    color: #8796A6;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+QTreeWidget#guiNavigationTree,
+QTreeWidget#guiNavigationBottomTree {
+    background: transparent;
+    border: none;
+    color: #E5ECF3;
+    outline: none;
+    padding: 4px;
+}
+
+QTreeWidget#guiNavigationTree::item,
+QTreeWidget#guiNavigationBottomTree::item {
+    min-height: 30px;
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+
+QTreeWidget#guiNavigationTree::item:hover,
+QTreeWidget#guiNavigationBottomTree::item:hover {
+    background: #2B3A49;
+    color: #E5ECF3;
+}
+
+QTreeWidget#guiNavigationTree::item:selected,
+QTreeWidget#guiNavigationBottomTree::item:selected {
+    background: #3473A5;
+    color: #FFFFFF;
+}
+
+QFrame#guiNavigationSeparator {
+    background: #344658;
+    border: none;
+}
+
+QFrame#guiWorkspace {
+    background: #17212B;
+    border: 1px solid #344658;
+    border-radius: 12px;
+}
+
+QFrame#guiWorkspaceHeader {
+    background: #1D2935;
+    border: 1px solid #344658;
+    border-radius: 10px;
+}
+
+QLabel#guiWorkspaceTitle {
+    color: #E5ECF3;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+QLabel#guiWorkspaceSubtitle {
+    color: #ABB8C6;
+    font-size: 12px;
+}
+
+
+QLabel#guiWorkspaceStatusLine {
+    color: #ABB8C6;
+    font-size: 12px;
+    padding: 0 4px 2px 4px;
+}
+QWidget#guiWorkspaceGrid {
+    background: transparent;
+}
+
+QScrollArea#guiOverpassSetupScrollArea,
+QWidget#guiOverpassSetupScrollContent,
+QScrollArea#guiOverpassSetupScrollArea > QWidget > QWidget {
+    background: transparent;
+}
+
+QFrame#guiCard {
+    background: #1D2935;
+    border: 1px solid #344658;
+    border-radius: 12px;
+}
+
+QLabel#guiCardTitle {
+    color: #E5ECF3;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+QLabel#guiCardBody {
+    color: #ABB8C6;
+    font-size: 12px;
+}
+
+
+QPushButton#guiNavigationToggle {
+    background: #17212B;
+    color: #E5ECF3;
+    border: 1px solid #344658;
+    border-radius: 9px;
+    min-width: 34px;
+    min-height: 30px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+QPushButton#guiNavigationToggle:hover {
+    background: #2B3A49;
+    border-color: #466078;
+}
+
+QSplitter#guiMainSplitter::handle {
+    background: #111820;
+    border-radius: 3px;
+}
+
+QWidget#guiNavigationRail[compact="true"] {
+    background: #17212B;
+}
+
+QWidget#guiNavigationRail[compact="true"] QLabel#guiNavigationTitle {
+    color: #8796A6;
+}
+
+QStackedWidget#guiNavigationModeStack {
+    background: transparent;
+    border: none;
+}
+
+QWidget#guiDomainRail {
+    background: transparent;
+}
+
+QWidget#guiNavigationRail[railMode="true"] {
+    background: #17212B;
+}
+
+QPushButton#guiRailButton {
+    background: #17212B;
+    color: #E5ECF3;
+    border: 1px solid #344658;
+    border-radius: 10px;
+    min-height: 38px;
+    padding: 6px 10px;
+    text-align: left;
+    font-weight: 700;
+}
+
+QPushButton#guiRailButton:hover {
+    background: #2B3A49;
+    border-color: #466078;
+    color: #E5ECF3;
+}
+
+QPushButton#guiRailButton[active="true"] {
+    background: #3473A5;
+    border-color: #3473A5;
+    color: #FFFFFF;
+}
+
+QFrame#guiTimeContext {
+    background: #17212B;
+    border: 1px solid #344658;
+    border-radius: 10px;
+}
+
+QLabel#guiTimeContextKey {
+    color: #E5ECF3;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+}
+
+QLabel#guiTimeContextValue {
+    color: #E5ECF3;
+    font-family: "Cascadia Mono", "Consolas", "Courier New", monospace;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+/* GUI generic form/control styling. Keep labels readable on dark cards. */
+QLabel#guiFieldLabel {
+    color: #E5ECF3;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+QFrame#guiCard QLabel {
+    color: #E5ECF3;
+}
+
+QFrame#guiCard QLabel#guiCardTitle {
+    color: #E5ECF3;
+}
+
+QFrame#guiCard QLabel#guiFieldLabel {
+    color: #E5ECF3;
+}
+
+QLineEdit, QDateEdit, QSpinBox, QComboBox, QListWidget, QPlainTextEdit {
+    background: #1D2935;
+    color: #E5ECF3;
+    border: 1px solid #344658;
+    border-radius: 7px;
+    padding: 5px 8px;
+    selection-background-color: #3473A5;
+    selection-color: #FFFFFF;
+}
+
+QLineEdit:read-only {
+    background: #1D2935;
+    color: #E5ECF3;
+}
+
+
+QLineEdit[validationState="error"], QDateEdit[validationState="error"], QComboBox[validationState="error"], QListWidget[validationState="error"] {
+    border-color: #A83D49;
+}
+
+QLineEdit[validationState="valid"], QDateEdit[validationState="valid"], QComboBox[validationState="valid"], QListWidget[validationState="valid"] {
+    border-color: #344658;
+}
+
+QLineEdit:disabled, QDateEdit:disabled, QSpinBox:disabled, QComboBox:disabled, QListWidget:disabled, QPlainTextEdit:disabled {
+    background: #202A34;
+    color: #6F7D8B;
+    border-color: #344658;
+}
+
+QComboBox QAbstractItemView {
+    background: #243240;
+    color: #E5ECF3;
+    border: 1px solid #344658;
+    selection-background-color: #3473A5;
+    selection-color: #FFFFFF;
+}
+
+QCheckBox {
+    color: #E5ECF3;
+    spacing: 7px;
+}
+
+QCheckBox:disabled {
+    color: #6F7D8B;
+}
+
+QPushButton {
+    background: #17212B;
+    color: #E5ECF3;
+    border: 1px solid #344658;
+    border-radius: 7px;
+    min-height: 22px;
+    padding: 2px 8px;
+    font-weight: 600;
+}
+
+QPushButton:hover {
+    background: #2B3A49;
+    border-color: #466078;
+}
+
+QPushButton:disabled {
+    background: #202A34;
+    color: #6F7D8B;
+    border-color: #344658;
+}
+
+QPushButton[buttonRole="primary"]:enabled {
+    background: #3473A5;
+    border-color: #3473A5;
+    color: #FFFFFF;
+}
+
+QPushButton[buttonRole="success"]:enabled {
+    background: #2F7D5A;
+    border-color: #2F7D5A;
+    color: #FFFFFF;
+}
+
+QPushButton[buttonRole="danger"]:enabled {
+    background: #A83D49;
+    border-color: #A83D49;
+    color: #FFFFFF;
+}
+
+QPushButton[buttonRole="secondary"]:enabled {
+    background: #17212B;
+    border-color: #344658;
+    color: #ABB8C6;
+}
+
+/* Role-button hover keeps each button's semantic hue and shifts its shade,
+   instead of collapsing to the neutral gray surface (which read as the button
+   losing its color) or leaving the state visually unchanged. */
+QPushButton[buttonRole="primary"]:enabled:hover {
+    background: #2E6896;
+    border-color: #2E6896;
+    color: #FFFFFF;
+}
+
+QPushButton[buttonRole="success"]:enabled:hover {
+    background: #2A7051;
+    border-color: #2A7051;
+    color: #FFFFFF;
+}
+
+QPushButton[buttonRole="danger"]:enabled:hover {
+    background: #973742;
+    border-color: #973742;
+    color: #FFFFFF;
+}
+
+QPushButton[buttonRole="secondary"]:enabled:hover {
+    background: #2B3A49;
+    border-color: #466078;
+    color: #E5ECF3;
+}
+
+/* Planner form options: keep radio-button labels readable on dark backgrounds. */
+QRadioButton {
+    color: #E5ECF3;
+    spacing: 7px;
+}
+
+QRadioButton:disabled {
+    color: #6F7D8B;
+}
+
+QFrame#guiPlannerStatusChip {
+    background: #17212B;
+    border: 1px solid #344658;
+    border-radius: 8px;
+}
+
+QFrame#guiPlannerStatusChip[ready="true"] {
+    background: #17212B;
+    border-color: #344658;
+}
+
+QFrame#guiPlannerStatusChip[ready="true"] QLabel {
+    color: #E5ECF3;
+}
+
+
+QFrame#guiPlannerControlsSection {
+    background: #17212B;
+    border: 1px solid #344658;
+    border-radius: 10px;
+}
+
+QLabel#guiCompactCardTitle {
+    color: #E5ECF3;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+QStackedWidget#guiPlannerBinningOptionStack,
+QStackedWidget#guiPlannerBinningOptionStack QWidget {
+    background: transparent;
+}
+
+/* GUI planner results workspace cards. */
+QFrame#guiPlannerPlotWorkspace,
+QFrame#guiPlannerGeneratedPlanWorkspace {
+    background: #1D2935;
+    border: 1px solid #344658;
+    border-radius: 12px;
+}
+
+QFrame#guiPlannerPlotWorkspace QWidget,
+QFrame#guiPlannerGeneratedPlanWorkspace QWidget {
+    background: transparent;
+    color: #E5ECF3;
+}
+
+QFrame#guiPlannerPlotWorkspace QLabel#guiCardTitle,
+QFrame#guiPlannerGeneratedPlanWorkspace QLabel#guiCardTitle {
+    color: #E5ECF3;
+}
+
+QFrame#guiPlannerPlotWorkspace QLabel#guiCardBody,
+QFrame#guiPlannerGeneratedPlanWorkspace QLabel#guiCardBody {
+    color: #ABB8C6;
+}
+
+
+QFrame#guiPlannerObservationInfoWorkspace {
+    background: #1D2935;
+    border: 1px solid #344658;
+    border-radius: 12px;
+}
+
+
+QFrame#guiPlannerObservationInfoWorkspace QFrame#guiObservationDetailsFrame {
+    background: #17212B;
+    border: 1px solid #344658;
+    border-radius: 8px;
+}
+
+QFrame#guiPlannerObservationInfoWorkspace QWidget#guiObservationStartBlock {
+    background: transparent;
+}
+
+QFrame#guiPlannerObservationInfoWorkspace QLabel {
+    color: #ABB8C6;
+}
+
+QFrame#guiPlannerObservationInfoWorkspace QLabel#guiCardTitle {
+    color: #E5ECF3;
+}
+
+QFrame#guiPlannerObservationInfoWorkspace QLabel#guiObservationInfoSectionTitle {
+    color: #E5ECF3;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+QFrame#guiPlannerObservationInfoWorkspace QLabel#guiObservationInfoName {
+    color: #ABB8C6;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+QFrame#guiPlannerObservationInfoWorkspace QLabel#guiObservationInfoValue {
+    color: #E5ECF3;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+QFrame#guiPlannerObservationInfoWorkspace QLabel#guiObservationStartLabel {
+    color: #E5ECF3;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+QFrame#guiPlannerObservationInfoWorkspace QLabel#observationStartTime {
+    color: #E5ECF3;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+QFrame#guiPlannerObservationInfoWorkspace QLineEdit {
+    background: #17212B;
+    color: #E5ECF3;
+    border: 1px solid #344658;
+    border-radius: 7px;
+    padding: 5px 8px;
+}
+
+QTableView#guiPlannerGeneratedPlanTable {
+    background: #1D2935;
+    alternate-background-color: #1D2935;
+    color: #E5ECF3;
+    gridline-color: #344658;
+    border: 1px solid #344658;
+    border-radius: 6px;
+    selection-background-color: #3473A5;
+    selection-color: #FFFFFF;
+}
+
+QTableView#guiPlannerGeneratedPlanTable QHeaderView::section {
+    background: #1D2935;
+    color: #E5ECF3;
+    border: 0;
+    border-right: 1px solid #344658;
+    border-bottom: 1px solid #344658;
+    padding: 4px 6px;
+    font-weight: 600;
+}
+
+/* Planner result card action buttons. */
+QWidget#guiPlannerGeneratedPlanActions QPushButton,
+QFrame#guiPlannerObservationInfoWorkspace QPushButton {
+    background: #17212B;
+    color: #E5ECF3;
+    border: 1px solid #344658;
+    border-radius: 7px;
+    min-height: 22px;
+    padding: 2px 8px;
+    font-weight: 600;
+}
+
+QWidget#guiPlannerGeneratedPlanActions QPushButton:hover,
+QFrame#guiPlannerObservationInfoWorkspace QPushButton:hover {
+    background: #2B3A49;
+    border-color: #466078;
+    color: #E5ECF3;
+}
+
+QWidget#guiPlannerGeneratedPlanActions QPushButton[buttonRole="primary"]:enabled {
+    background: #3473A5;
+    border-color: #3473A5;
+    color: #FFFFFF;
+}
+
+QWidget#guiPlannerGeneratedPlanActions QPushButton[buttonRole="success"]:enabled {
+    background: #2F7D5A;
+    border-color: #2F7D5A;
+    color: #FFFFFF;
+}
+
+QWidget#guiPlannerGeneratedPlanActions QPushButton[buttonRole="danger"]:enabled,
+QFrame#guiPlannerObservationInfoWorkspace QPushButton[buttonRole="danger"]:enabled {
+    background: #A83D49;
+    border-color: #A83D49;
+    color: #FFFFFF;
+}
+
+QWidget#guiPlannerGeneratedPlanActions QPushButton[buttonRole="primary"]:enabled:hover {
+    background: #2E6896;
+    border-color: #2E6896;
+    color: #FFFFFF;
+}
+
+QWidget#guiPlannerGeneratedPlanActions QPushButton[buttonRole="success"]:enabled:hover {
+    background: #2A7051;
+    border-color: #2A7051;
+    color: #FFFFFF;
+}
+
+QWidget#guiPlannerGeneratedPlanActions QPushButton[buttonRole="danger"]:enabled:hover,
+QFrame#guiPlannerObservationInfoWorkspace QPushButton[buttonRole="danger"]:enabled:hover {
+    background: #973742;
+    border-color: #973742;
+    color: #FFFFFF;
+}
+
+QWidget#guiPlannerGeneratedPlanActions QPushButton:disabled,
+QFrame#guiPlannerObservationInfoWorkspace QPushButton:disabled {
+    background: #202A34;
+    color: #6F7D8B;
+    border-color: #344658;
+}
+
+
+
+/* Task 50A planner preferences editor: keep tab pages and column mapping on the GUI dark theme. */
+QTabWidget#guiPlannerPreferencesTabs {
+    background-color: #17212B;
+    color: #E5ECF3;
+    border: none;
+}
+
+QTabWidget#guiPlannerPreferencesTabs QStackedWidget {
+    background-color: #17212B;
+    border: none;
+}
+
+QTabWidget#guiPlannerPreferencesTabs::pane {
+    border: 1px solid #344658;
+    border-radius: 8px;
+    background-color: #17212B;
+    top: -1px;
+}
+
+QTabWidget#guiPlannerPreferencesTabs::tab-bar {
+    left: 0px;
+    background-color: #17212B;
+}
+
+QTabWidget#guiPlannerPreferencesTabs QTabBar {
+    background-color: #17212B;
+    color: #E5ECF3;
+    qproperty-drawBase: 0;
+}
+
+QTabWidget#guiPlannerPreferencesTabs QTabBar::tab {
+    background-color: #17212B;
+    color: #E5ECF3;
+    border: 1px solid #344658;
+    border-bottom: none;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 7px 12px;
+    margin-right: 3px;
+}
+
+QTabWidget#guiPlannerPreferencesTabs QTabBar::tab:selected {
+    background-color: #3473A5;
+    color: #FFFFFF;
+}
+
+QTabWidget#guiPlannerPreferencesTabs QTabBar::tab:hover {
+    background-color: #2B3A49;
+    color: #E5ECF3;
+}
+
+QScrollArea#guiPlannerPreferencesGeneralTab,
+QScrollArea#guiPlannerPreferencesDiagnosticsTab,
+QScrollArea#guiPlannerPreferencesColumnsTab,
+QWidget#guiPlannerPreferencesGeneralTabContent,
+QWidget#guiPlannerPreferencesDiagnosticsTabContent,
+QWidget#guiPlannerPreferencesColumnsTabContent,
+QScrollArea#guiPlannerPreferencesGeneralTab > QWidget > QWidget,
+QScrollArea#guiPlannerPreferencesDiagnosticsTab > QWidget > QWidget,
+QScrollArea#guiPlannerPreferencesColumnsTab > QWidget > QWidget {
+    background-color: #17212B;
+    border: none;
+}
+
+QTableWidget#guiPlannerColumnMappingTable {
+    background-color: #1D2935;
+    alternate-background-color: #1D2935;
+    color: #E5ECF3;
+    border: 1px solid #344658;
+    border-radius: 6px;
+    gridline-color: #344658;
+    selection-background-color: #3473A5;
+    selection-color: #FFFFFF;
+}
+
+QTableWidget#guiPlannerColumnMappingTable::item {
+    background-color: transparent;
+    color: #E5ECF3;
+    padding: 4px 6px;
+}
+
+QTableWidget#guiPlannerColumnMappingTable::item:selected {
+    background-color: #3473A5;
+    color: #FFFFFF;
+}
+
+QTableWidget#guiPlannerColumnMappingTable QHeaderView::section {
+    background-color: #1D2935;
+    color: #E5ECF3;
+    border: 0;
+    border-right: 1px solid #344658;
+    border-bottom: 1px solid #344658;
+    padding: 5px 7px;
+    font-weight: 700;
+}
+
+QTableWidget#guiPlannerColumnMappingTable QTableCornerButton::section {
+    background-color: #1D2935;
+    border: 0;
+    border-right: 1px solid #344658;
+    border-bottom: 1px solid #344658;
+}
+
+QTableWidget#guiPlannerColumnMappingTable QSpinBox {
+    background-color: #1D2935;
+    color: #E5ECF3;
+    border: 1px solid #344658;
+    border-radius: 6px;
+    padding: 3px 6px;
+}
+
+/* Task 48E planner diagnostics workspace */
+QWidget#guiPlannerDiagnosticsWorkspace {
+    background: transparent;
+}
+
+QWidget#guiPlannerDiagnosticsOverview,
+QWidget#guiPlannerDiagnosticsDetailsContent,
+QWidget#guiPlannerDiagnosticsPlotPage,
+QScrollArea#guiPlannerDiagnosticsScrollArea QWidget {
+    background-color: #17212B;
+}
+
+QFrame#guiDiagnosticsSummaryStrip,
+QFrame#guiDiagnosticsCard {
+    background-color: #1D2935;
+    border: 1px solid #344658;
+    border-radius: 8px;
+}
+
+QLabel#guiDiagnosticsCardTitle,
+QLabel#guiDiagnosticsTableTitle,
+QLabel#guiDiagnosticsPlotTitle {
+    color: #E5ECF3;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+QLabel#guiDiagnosticsCardBody {
+    color: #ABB8C6;
+    font-size: 12px;
+}
+
+QTabWidget#guiPlannerDiagnosticsTabs::pane {
+    border: 1px solid #344658;
+    border-radius: 8px;
+    background-color: #17212B;
+    top: -1px;
+}
+
+QTabWidget#guiPlannerDiagnosticsTabs QTabBar::tab {
+    background-color: #17212B;
+    color: #E5ECF3;
+    border: 1px solid #344658;
+    border-bottom: none;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 7px 12px;
+    margin-right: 3px;
+}
+
+QTabWidget#guiPlannerDiagnosticsTabs QTabBar::tab:selected {
+    background-color: #3473A5;
+    color: #FFFFFF;
+}
+
+QTabWidget#guiPlannerDiagnosticsTabs QTabBar::tab:hover {
+    background-color: #2B3A49;
+    color: #E5ECF3;
+}
+
+QTabWidget#guiPlannerDiagnosticsPlotTabs::pane {
+    border: 1px solid #344658;
+    border-radius: 8px;
+    background-color: #17212B;
+    top: -1px;
+}
+
+QTabWidget#guiPlannerDiagnosticsPlotTabs QTabBar::tab {
+    background-color: #17212B;
+    color: #E5ECF3;
+    border: 1px solid #344658;
+    border-bottom: none;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 7px 12px;
+    margin-right: 3px;
+}
+
+QTabWidget#guiPlannerDiagnosticsPlotTabs QTabBar::tab:selected {
+    background-color: #3473A5;
+    color: #FFFFFF;
+}
+
+QTabWidget#guiPlannerDiagnosticsPlotTabs QTabBar::tab:hover {
+    background-color: #2B3A49;
+    color: #E5ECF3;
+}
+
+QLabel#guiDiagnosticsPlotDescription {
+    color: #ABB8C6;
+    font-size: 12px;
+}
+
+
+QTableView#guiPlannerDiagnosticsTable {
+    background-color: #1D2935;
+    alternate-background-color: #1D2935;
+    color: #E5ECF3;
+    border: 1px solid #344658;
+    border-radius: 6px;
+    gridline-color: #344658;
+    selection-background-color: #3473A5;
+    selection-color: #FFFFFF;
+}
+
+QTableView#guiPlannerDiagnosticsTable QHeaderView::section {
+    background-color: #1D2935;
+    color: #E5ECF3;
+    border: 0;
+    border-right: 1px solid #344658;
+    border-bottom: 1px solid #344658;
+    padding: 5px 7px;
+    font-weight: 700;
+}
+
+QPlainTextEdit#guiPlannerDiagnosticsDetailsText {
+    background-color: #1D2935;
+    color: #E5ECF3;
+    border: 1px solid #344658;
+    border-radius: 6px;
+    selection-background-color: #3473A5;
+    selection-color: #FFFFFF;
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 12px;
+}
+
+QScrollArea#guiPlannerDiagnosticsScrollArea {
+    background: transparent;
+    border: none;
+}
+
+
+/* Task 58 shared component roles */
+QWidget#guiShell,
+QStackedWidget#guiWorkspaceStack,
+QWidget#guiWorkspaceGrid,
+QWidget#guiPlannerDiagnosticsOverview,
+QWidget#guiPlannerDiagnosticsDetailsContent,
+QWidget#guiPlannerDiagnosticsPlotPage {
+    background: transparent;
+    color: #E5ECF3;
+}
+
+QTabWidget[visualRole="workspaceTabs"]::pane,
+QTabWidget#guiPlannerDiagnosticsTabs::pane,
+QTabWidget#guiPlannerDiagnosticsPlotTabs::pane,
+QTabWidget#guiPlannerPreferencesTabs::pane {
+    background: #17212B;
+    border: 1px solid #344658;
+    border-radius: 8px;
+}
+
+QTabBar::tab {
+    background: #1D2935;
+    color: #ABB8C6;
+    border: 1px solid #344658;
+    border-bottom: none;
+    padding: 7px 12px;
+    min-height: 18px;
+}
+
+QTabBar::tab:selected {
+    background: #243240;
+    color: #E5ECF3;
+    border-color: #466078;
+}
+
+QTabBar::tab:hover:!selected {
+    background: #2B3A49;
+    color: #E5ECF3;
+}
+
+QAbstractItemView {
+    background: #17212B;
+    alternate-background-color: #1D2935;
+    color: #E5ECF3;
+    border: 1px solid #344658;
+    gridline-color: #344658;
+    selection-background-color: #3473A5;
+    selection-color: #FFFFFF;
+    outline: none;
+}
+
+QHeaderView::section {
+    background: #243240;
+    color: #E5ECF3;
+    border: none;
+    border-right: 1px solid #344658;
+    border-bottom: 1px solid #344658;
+    padding: 6px 8px;
+    font-weight: 700;
+}
+
+QLineEdit:focus,
+QComboBox:focus,
+QSpinBox:focus,
+QDoubleSpinBox:focus,
+QDateTimeEdit:focus,
+QPlainTextEdit:focus,
+QTextEdit:focus,
+QTableView:focus,
+QTableWidget:focus,
+QTreeWidget:focus,
+QPushButton:focus {
+    border: 2px solid #68A9D7;
+}
+
+QToolTip {
+    background: #243240;
+    color: #E5ECF3;
+    border: 1px solid #466078;
+    padding: 5px 7px;
+}
+
+QMenu {
+    background: #243240;
+    color: #E5ECF3;
+    border: 1px solid #466078;
+    padding: 4px;
+}
+
+QMenu::item {
+    padding: 6px 18px;
+    border-radius: 4px;
+}
+
+QMenu::item:selected {
+    background: #3473A5;
+    color: #FFFFFF;
+}
+
+QScrollBar:vertical {
+    background: #17212B;
+    width: 12px;
+    margin: 0;
+}
+QScrollBar::handle:vertical {
+    background: #466078;
+    min-height: 28px;
+    border-radius: 5px;
+    margin: 2px;
+}
+QScrollBar::handle:vertical:hover { background: #68A9D7; }
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical,
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical { background: transparent; height: 0; }
+
+QScrollBar:horizontal {
+    background: #17212B;
+    height: 12px;
+    margin: 0;
+}
+QScrollBar::handle:horizontal {
+    background: #466078;
+    min-width: 28px;
+    border-radius: 5px;
+    margin: 2px;
+}
+QScrollBar::handle:horizontal:hover { background: #68A9D7; }
+QScrollBar::add-line:horizontal,
+QScrollBar::sub-line:horizontal,
+QScrollBar::add-page:horizontal,
+QScrollBar::sub-page:horizontal { background: transparent; width: 0; }
+
+QLabel#guiPlannerLoadIndicator[loadState="idle"] { color: #8796A6; }
+QLabel#guiPlannerLoadIndicator[loadState="loading"] { color: #D49A3A; }
+QLabel#guiPlannerLoadIndicator[loadState="loaded"] { color: #2F7D5A; }
+QLabel#guiPlannerLoadIndicator[loadState="error"] { color: #A83D49; }
+QLabel#guiPlannerLoadIndicator[loadState="disabled"] { color: #6F7D8B; }
+
+QWidget#guiLoadingOverlay {
+    background: rgba(11, 17, 24, 178);
+}
+QFrame#guiLoadingPanel {
+    background: #243240;
+    border: 1px solid #466078;
+    border-radius: 12px;
+}
+QLabel#guiLoadingMessage {
+    color: #E5ECF3;
+    font-size: 13px;
+    font-weight: 650;
+}

@@ -1,0 +1,56 @@
+/* Map Container */
+#map {
+    width: 100%;
+    height: 100vh;
+    border-radius: 8px;  /* Optional rounded corners */
+}
+
+/* Popup Style */
+.leaflet-popup-content-wrapper {
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.leaflet-popup-content {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    text-align: center;
+}
+
+
+/* Custom Marker Styling (Optional) */
+.custom-marker {
+    background-color: #ff4d4d;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+.observatory-site-popup {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 230px;
+    text-align: left;
+}
+
+.observatory-site-choice {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #9aa7b2;
+    border-radius: 4px;
+    background: #ffffff;
+    color: #17202a;
+    cursor: pointer;
+    text-align: left;
+}
+
+.observatory-site-choice:hover {
+    background: #e8f2ff;
+}
+
+.observatory-site-status {
+    min-height: 1.2em;
+    font-size: 12px;
+    font-weight: 600;
+}

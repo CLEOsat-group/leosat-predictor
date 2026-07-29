@@ -1,0 +1,65 @@
+# Task 57B generated PyInstaller output
+/build/
+/dist/
+
+# Python bytecode / caches
+__pycache__/
+*.pyc
+*.pyo
+
+# Editable-install metadata
+*.egg-info/
+
+# JetBrains IDE project state — kept local, not published
+/.idea/
+
+# Runtime / user state (see data/*.example.json for shipped templates)
+/data/user_locations.json
+/data/user_preferences.json
+
+# Downloaded TLE snapshots and generated result payloads
+/data/tle/
+/data/raw_results/
+/data/satellite_data.db
+
+# Prediction / planner exports written to the repo root during source runs
+/visible_*.csv
+/visible_*_tle.txt
+/leosat_obs_plan_*.csv
+/leosat_obs_plan_*.json
+/leosat_obs_plan_*_diagnostics.json
+
+# Internal development documentation — kept local, not published
+/docs/
+# Dev tooling and tests — kept local, not published for now
+/tools/
+/tests/
+# Contributor/changelog notes kept local for now (README is the public doc)
+/CONTRIBUTING.md
+/CHANGELOG.md
+
+# Legacy single-file PyQt5 prototype, superseded by gui (kept local)
+/leosat-obs-selector.py
+
+# Flask web app — not in the initial (GUI-only) release. Kept local and
+# runnable; folded into the public repo once it reaches GUI feature parity.
+# (The shared core in src/ — models, observation_planner, prediction_core,
+#  utils, config, and the shared services — stays published.)
+/src/main.py
+/src/routes/
+/src/web/
+/src/db/
+/src/templates/
+/src/services/results_handler.py
+/frontend/
+/static/
+/package.json
+/package-lock.json
+/requirements_web.txt
+/scripts/run_server.py
+/scripts/run_server_bak.py
+
+# Local development TLS certificates (self-signed; generate per machine)
+/certs/*.key
+/certs/*.crt
+/certs/*.pem

@@ -1,0 +1,16 @@
+pandas
+pyorbital
+astropy
+requests
+PyQt6
+PyQt6-WebEngine
+ephem
+numpy
+pytz
+python-dateutil
+suntime
+setuptools
+colorlog
+matplotlib
+python-dotenv
+pyqtgraph

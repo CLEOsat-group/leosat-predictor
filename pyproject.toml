@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "leosat-predictor"
+version = "0.1.0"
+description = "Prediction, planning, and visualization of Low-Earth-Orbit satellite passes (PyQt6 desktop GUI)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
+authors = [{ name = "Christian Adam" }]
+keywords = ["satellite", "LEO", "orbit", "prediction", "astronomy", "observation-planning"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: Microsoft :: Windows",
+    "Environment :: X11 Applications :: Qt",
+    "Topic :: Scientific/Engineering :: Astronomy",
+    "Intended Audience :: Science/Research",
+]
+
+# Base install = desktop GUI + shared prediction/planning core.
+# `pip install .` yields a working GUI.
+dependencies = [
+    "astropy",
+    "colorlog",
+    "ephem",
+    "matplotlib",
+    "numpy",
+    "pandas",
+    "pyorbital",
+    "PyQt6",
+    "PyQt6-WebEngine",
+    "pyqtgraph",
+    "python-dateutil",
+    "python-dotenv",
+    "pytz",
+    "requests",
+    "suntime",
+]
+
+[project.optional-dependencies]
+# Flask web app (shares the src/ core). The web *code* joins this repository
+# once it reaches GUI feature parity; until then `.[web]` installs its
+# runtime deps for local development where the web sources are present.
+web = [
+    "Flask",
+    "gunicorn",
+    "redis",
+]
+# Windows GUI distribution build (PyInstaller).
+build = [
+    "PyInstaller==6.20.0",
+    "pyinstaller-hooks-contrib==2026.5",
+]
+
+[project.scripts]
+leosat-predictor-gui = "gui.app:run"
+
+[tool.setuptools.packages.find]
+# Flat layout: two importable top-level packages, gui/ and src/.
+include = ["gui*", "src*"]
+
+[tool.setuptools.package-data]
+gui = [
+    "assets/icons/*.svg",
+    "assets/icons/*.txt",
+    "styles/*.qss",
+    "styles/*.qss.in",
+    "map_assets/*.html",
+    "map_assets/css/*.css",
+    "map_assets/js/*.js",
+]
