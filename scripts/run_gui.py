@@ -1,6 +1,6 @@
 """Launch the production desktop GUI.
 
-GUI is the active desktop application after Task 54A. The legacy GUI v1
+GUI v2 is the active desktop application after Task 54A. The legacy GUI v1
 package is retained only under ``docs/archive/gui_v1_legacy_reference`` for
 historical inspection.
 """
@@ -24,6 +24,6 @@ if __name__ == "__main__":
 
     freeze_support()
 
-    from gui.app import run
+    from gui_v2.app import run
 
     raise SystemExit(run(sys.argv))

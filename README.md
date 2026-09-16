@@ -1,42 +1,35 @@
 # leosat-predictor
 
-PyQt6 desktop app for Low-Earth-Orbit satellite pass prediction and
-observation planning — fetch TLEs, compute visible passes over an observing
-site, and generate optimized observation plans.
+Calculate and visualize passes of Low-Earth-Orbit satellites through the production GUI-v2 desktop workflow or web workflow.
 
-> **A Flask web app** with the same workflow is maintained separately and
-> will be added to this repository once it reaches feature parity with the
-> desktop GUI.
+## Quick Start
 
-## Repository layout
-
-```
-gui/                      Desktop GUI (PyQt6) — presenters, views, widgets, dialogs
-src/
-  prediction_core/        Orbital propagation & pass prediction
-  observation_planner/    Observation planning / optimization
-  models/                 Domain models (locations, formatting, prediction thread)
-  services/               Shared services (TLE, satellite proxy, observatory catalog)
-  utils/                  Shared utilities
-scripts/                  Entry point (run_gui.py)
-config/, data/            Configuration and shipped example data
-packaging/                Windows GUI packaging (PyInstaller)
-```
-
-## Quick start
+Install the GUI dependencies, then launch the desktop app from the repository root:
 
 ```powershell
 python -m pip install -r requirements_gui.txt
 python scripts\run_gui.py
 ```
 
-## Requirements files
+GUI v2 is the active desktop GUI. The legacy GUI v1 source is archived under
+`docs/archive/gui_v1_legacy_reference/gui` for reference only.
 
-| File | Purpose |
-|------|---------|
-| `requirements_gui.txt` | Desktop GUI (PyQt6) runtime dependencies |
-| `requirements_gui_build.txt` | Adds PyInstaller for building the Windows GUI distribution |
+For documentation authority, current docs, and archived planning history, see [docs/README.md](docs/README.md).
 
-## License
+## Web workflow TLS certificate
 
-Released under the **GNU General Public License v3.0** — see [LICENSE](LICENSE).
+The Flask web workflow (`src/main.py`) serves over HTTPS using a self-signed
+certificate at `certs/localhost.crt` / `certs/localhost.key`. These files are
+**not committed** (they are development-only credentials). Generate a local
+pair before running the web app:
+
+```powershell
+mkdir certs -Force
+openssl req -x509 -newkey rsa:2048 -nodes -keyout certs\localhost.key -out certs\localhost.crt -days 365 -subj "/CN=localhost"
+```
+
+## Windows GUI distribution
+
+The Windows build supports a fast-start folder distribution and a portable one-file distribution. Both package Python and the required application dependencies, so Python is not required on the target computer.
+
+Build, artifact-inspection, copy, and clean-machine test instructions are documented in [`docs/deployment/windows_gui_distribution.md`](docs/deployment/windows_gui_distribution.md).

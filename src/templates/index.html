@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satellite Predictor</title>
+    <link rel="stylesheet" href="/frontend/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="/node_modules/choices.js/public/assets/styles/choices.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+    <script src="/node_modules/choices.js/public/assets/scripts/choices.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr" defer></script>
+    <script src="https://cdn.plot.ly/plotly-3.0.0.min.js" charset="utf-8"></script>
+</head>
+<body>
+
+    <div class="page">
+        <div class="page__grid">
+            <div class="page__header">
+                <header class="header__title">
+                    <h1>Satellite Predictor</h1>
+                </header>
+                <section class="header__time-info">
+                    <div class="header__time-info-row">
+                        <fieldset>
+                            <legend>Time Info</legend>
+                            <div class="header__time-info-field">
+                                <label>Local Time:</label>
+                                <span id="localTime">--</span>
+                            </div>
+                            <div class="header__time-info-field">
+                                <label>UTC Time:</label>
+                                <span id="utcTime">--</span>
+                            </div>
+                        </fieldset>
+                        <!-- Additional elements for statistics and settings can be added here -->
+                    </div>
+                </section>
+                <section class="header__stats">
+                    <div class="header__stats-row">
+                        <fieldset>
+                            <legend>Statistics</legend>
+                            <div class="header__stats-field">
+                                <label>Number of Predictions:</label>
+                                <span id="numPredictions">0</span>
+                            </div>
+                        </fieldset>
+                    </div>
+                </section>
+            </div>
+
+            <section class="prediction-form">
+                <form id="predictionForm">
+                    <div id="predictionTabs">
+                        <ul class="tabs__header">
+                            <li class="active" data-tab="overpass">Overpass Prediction</li>
+                            <li data-tab="precise">Precise Prediction</li>
+                            <li data-tab="planner">Observation Planner</li>
+                        </ul>
+                    </div>
+
+                    <div id="sharedElementsInMainTabs" class="configuration-group">
+                        <fieldset>
+                            <legend>Satellite Selection</legend>
+                            <div class="form-group">
+                                <label for="start_date">Start Date (Local):</label>
+                                <input type="text" id="start_date" name="start_date" required autocomplete="on">
+                                <label for="constellationSelect">Select Constellation:</label>
+                                <div class="inline-container">
+                                    <select id="constellationSelect" name="constellationSelect">
+                                        <option value="">-- Select Constellation --</option>
+                                    </select>
+                                    <button type="button" id="fetchTleBtn">Fetch TLE</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="satelliteFilterPredict">Filter Satellites:</label>
+                                <div class="inline-container">
+                                    <input type="text" id="satelliteFilterPredict" placeholder="e.g. 1000-3500" disabled>
+                                    <button id="applySatelliteFilterPredict" disabled>Apply Filter</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="satelliteSelect">Select Satellite:</label>
+                                <div class="select-satellite-container">
+                                    <select id="satelliteSelect" class="form-control" multiple>
+                                        <option value="">-- Select Satellite --</option>
+                                    </select>
+                                    <div class="form-group custom-checkbox">
+                                        <div class="row">
+                                            <label for="selectAllSatellites">Select All</label>
+                                            <input type="checkbox" id="selectAllSatellites" />
+                                        </div>
+                                        <div class="row">
+                                            <label for="defaultToggle" class="toggle-label">Default Satellites Only</label>
+                                            <input type="checkbox" id="defaultToggle" checked>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="sat_name">Satellite Name:</label>
+                                <input type="text" id="sat_name" placeholder="Satellite Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="tle1">TLE Line 1:</label>
+                                <input type="text" id="tle1" placeholder="1 37849U 11061A   24366.54087094  .00000372  00000+0  19733-3 0  9995" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="tle2">TLE Line 2:</label>
+                                <input type="text" id="tle2" placeholder="2 37849  98.7431 301.7140 0002106  62.9540 297.1851 14.19528617682874" required>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Location Settings</legend>
+                            <div class="form-group">
+                                <label for="main_location_name">Location Name:</label>
+                                <input type="text" id="main_location_name" placeholder="Location Name">
+                                <label for="main_lat">Latitude:</label>
+                                <input type="text" id="main_lat" placeholder="Latitude">
+                                <label for="main_lon">Longitude:</label>
+                                <input type="text" id="main_lon" placeholder="Longitude">
+                                <label for="main_observer_alt">Altitude:</label>
+                                <input type="text" id="main_observer_alt" placeholder="Altitude">
+                            </div>
+                            <div class="form-group">
+                                <button type="button" id="setMainLocationBtn" class="btn-primary">Set as Default</button>
+                                <button type="button" id="saveLocationToConfigBtn">Save Location</button>
+                                <button type="button" id="clearLocationFormBtn">Clear Location</button>
+                                <button type="button" id="openMapPopupBtn">Select from Map</button>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div id="tabContent">
+                        <div id="overpass" class="tabs__pane tabs__pane--active">
+                            <div id="overpassContent">
+                                {% include "includes/overpass_tab.html" %}
+                            </div>
+                        </div>
+                        <div id="precise" class="tabs__pane">
+                            <div id="preciseContent">
+                                {% include "includes/precise_tab.html" %}
+                            </div>
+                        </div>
+                        <div id="planner" class="tabs__pane">
+                            <div id="plannerContent">
+                                {% include "includes/observation_planner_tab.html" %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="mode" value="overpass" />
+
+                    <fieldset>
+                        <legend>Prediction Controls</legend>
+                        <div id="predictButtonForm">
+                            <button type="submit" id="runPredictionBtn" disabled>Predict</button>
+    <!--                        <button type="button" id="plotPredictionBtn" disabled>Plot</button>-->
+                            <button type="button" id="cancelPredictionBtn" disabled>Cancel</button>
+                            <button type="button" id="savePredictResultToCSVBtn" disabled>Save to CSV</button>
+                            <div id="preferencesSection">
+                                <button type="button" id="openPreferencesBtn">Preferences</button>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+<!--                        <legend>Console</legend>-->
+                        <div id="statusContainer" class="status-container">
+                            <label>Status:</label>
+                            <div id="statusMessage" style="margin-left: 10px;"></div>
+                            <div id="spinner" class="spinner" style="display: none; margin-left: 10px;"></div>
+                        </div>
+                    </fieldset>
+                </form>
+            </section>
+
+            <section class="plot-container" id="plotContainer" style="display: block;">
+                <h2 id="plotAreaTitle">Plot Area</h2>
+                <div id="plotTabs">
+                    <ul class="tabs__header">
+                        <li class="active" data-tab="elevationPlot">Elevation Plot</li>
+                        <li data-tab="mapPlot">Map Plot</li>
+                    </ul>
+                </div>
+
+                <div id="plotFilterRow" class="plot__filters">
+                    <fieldset class="plot__filter-fieldset">
+                        <div class="plot__filter-group">
+                            <label for="satelliteFilterPlot">Satellite:</label>
+                            <select id="satelliteFilterPlot">
+                            <option value="all">All</option>
+                            <!-- Populate with satellite options -->
+                        </select>
+                        </div>
+                        <div class="plot__filter-group">
+                            <label for="timeFilter">Time of Day:</label>
+                            <select id="timeFilter">
+                            <option value="all">All</option>
+                            <option value="morning">Morning</option>
+                            <option value="evening">Evening</option>
+                            <option value="night">Night</option>
+                            <option value="day">Day</option>
+                        </select>
+                        </div>
+                        <div class="plot__filter-group">
+                            <label for="minElevationFilter">Min Elevation:</label>
+                            <input type="text" id="minElevationFilter" min="0" placeholder="Min Elevation (°)" />
+                        </div>
+                        <div class="plot__filter-group">
+                            <label for="dateFilter">Date:</label>
+                            <select id="dateFilter">
+                            <option value="all">All</option>
+                            <!-- Populate with satellite options -->
+                        </select>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="plot__filter-actions">
+                        <div class="plot__filter-group">
+                            <button type="button" id="applyFilterPlotBtn" disabled>Apply Filter/Plot Data</button>
+                            <button type="button" id="resetFiltersBtn" disabled>Reset Filters</button>
+                        </div>
+                    </fieldset>
+
+                </div>
+
+                <fieldset>
+                    <div id="plotTabsContent">
+                        <div id="elevationPlot" class="tabs__pane tabs__pane--active"></div>
+                        <div id="mapPlot" class="tabs__pane"></div>
+                    </div>
+                </fieldset>
+            </section>
+
+            <section class="results-container">
+                <fieldset>
+                    <legend id="resultTableTitle">Results</legend>
+                    <table id="resultsTable">
+                        <thead>
+                            <tr></tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </fieldset>
+            </section>
+        </div>
+    </div>
+
+    <div id="preferencesContainer"></div>
+    <div id="mapPopupContainer"></div>
+
+    <script type="module" src="/frontend/js/components.js" defer></script>
+    <script type="module" src="/frontend/js/preferences.js" defer></script>
+    <script type="module" src="/frontend/js/plot.js" defer></script>
+    <script type="module" src="/frontend/js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<div id="preferencesOverlay" class="modal-overlay"></div>
+
+<div id="preferencesModal" class="modal-content">
+    <h2>Preferences</h2>
+    <div class="tabs__header">
+        <button data-tab="location-tab" class="active">Location</button>
+        <button data-tab="tle-tab">TLE</button>
+        <button data-tab="prediction-tab">Prediction</button>
+    </div>
+    <form id="preferencesForm">
+        <!-- Location Tab -->
+        <div id="location-tab" class="tabs__pane tabs__pane--active">
+            <fieldset>
+                <legend>Location Settings</legend>
+                <div class="form-group">
+                    <label for="preferences_locationName">Name:</label>
+                    <input type="text" id="preferences_locationName" placeholder="Location Name">
+                    <label for="preferences_lat">Latitude:</label>
+                    <input type="text" id="preferences_lat" step="0.000001" placeholder="Latitude">
+                    <label for="preferences_lon">Longitude:</label>
+                    <input type="text" id="preferences_lon" step="0.000001" placeholder="Longitude">
+                    <label for="preferences_alt">Altitude:</label>
+                    <input type="text" id="preferences_alt" step="1" placeholder="Altitude">
+                </div>
+                <div class="form-group">
+                    <button type="button" id="set_as_default">Set as Default</button>
+                    <button type="button" id="openMapPopupBtn">Select from Map</button>
+                    <button type="button" id="saveLocationToConfigBtn">Save to User Locations</button>
+                </div>
+            </fieldset>
+        </div>
+
+        <!-- TLE Tab -->
+        <div id="tle-tab" class="tabs__pane">
+            <fieldset>
+                <legend>TLE Settings</legend>
+                <div class="form-group">
+                    <label for="tleExpiration">TLE Expiration (Hours):</label>
+                    <input type="text" id="tleExpiration" min="1" value="24">
+                </div>
+            </fieldset>
+        </div>
+
+        <!-- Prediction Tab -->
+        <div id="prediction-tab" class="tabs__pane">
+            <fieldset>
+<!--                <legend>Prediction Settings</legend>-->
+                <h3>Overpass Prediction</h3>
+                <div class="form-group">
+                    <label for="preferences_days">Days to Predict:</label>
+                    <input type="text" id="preferences_days" min="1" value="3">
+                </div>
+                 <div class="form-group">
+                    <label for="preferences_predictionRangeOverpass">Time of Day:</label>
+                    <select id="preferences_predictionRangeOverpass" title="Select the time of day for the prediction.">
+                        <option value="night" selected>Night</option>
+                        <option value="day">Day</option>
+                        <option value="both">Both</option>
+                    </select>
+                </div>
+                <hr>
+                <h3>Precise Prediction</h3>
+                <div class="form-group">
+                    <label for="preferences_predictionInterval">Interval:</label>
+                    <input type="text" id="preferences_predictionInterval" min="1" value="300">
+                    <select id="preferences_predictionIntervalUnit">
+                        <option value="seconds">Seconds</option>
+                        <option value="minutes">Minutes</option>
+                        <option value="hours">Hours</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="preferences_predictionRangePrecise">Time of Day:</label>
+                    <select id="preferences_predictionRangePrecise" title="Select the time of day for the prediction.">
+                        <option value="morning">Morning</option>
+                        <option value="evening">Evening</option>
+                        <option value="both" selected>Both</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="preferences_satElevationLowest">Lowest Elevation (°):</label>
+                    <input type="text" id="preferences_satElevationLowest" min="0" value="30" title="Enter the lowest altitude in degrees.">
+                </div>
+                <div class="form-group">
+                    <label for="preferences_sunZenithHighest">Sun Zenith Angle (Highest °):</label>
+                    <input type="text" id="preferences_sunZenithHighest" min="0" value="112" title="Enter the highest sun zenith angle in degrees.">
+                </div>
+                <div class="form-group">
+                    <label for="preferences_sunZenithLowest">Sun Zenith Angle (Lowest °):</label>
+                    <input type="text" id="preferences_sunZenithLowest" min="0" value="99" title="Enter the lowest sun zenith angle in degrees.">
+                </div>
+                <div class="form-group">
+                    <label for="margin">Margin (Minutes):</label>
+                    <input type="text" id="margin" min="1" value="5" title="Enter the margin in minutes.">
+                </div>
+            </fieldset>
+        </div>
+    </form>
+    <div class="modal-buttons">
+        <button id="savePreferencesBtn" class="btn-primary">Save Preferences</button>
+        <button id="closePreferencesBtn" class="btn-secondary">Close</button>
+    </div>
+
+</div>

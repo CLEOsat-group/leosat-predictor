@@ -20,7 +20,7 @@ What you expected to happen instead.
 
 ## Environment
 
-- Workflow: desktop GUI (`gui`) / web (`src.main`)
+- Workflow: desktop GUI (`gui_v2`) / web (`src.main`)
 - OS and version:
 - If using a built GUI artifact: FastStart or Portable, Diagnostic or Release, and the artifact's version/date
 - If running from source: Python version and whether `requirements_gui.txt` or `requirements_web.txt` was used

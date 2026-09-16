@@ -1,5 +1,5 @@
 # -*- mode: python ; coding: utf-8 -*-
-"""PyInstaller specification for the production GUI application.
+"""PyInstaller specification for the production GUI-v2 application.
 
 The same dependency graph supports both a fast-start one-folder distribution
 and a portable one-file executable.  Build mode is selected through
@@ -118,16 +118,16 @@ def _data_tree(
 datas = [
     _data_file(ROOT / "config" / "config.json", "config"),
     _data_file(
-        ROOT / "gui" / "styles" / "dashboard_dark.qss",
-        "gui/styles",
+        ROOT / "gui_v2" / "styles" / "dashboard_dark.qss",
+        "gui_v2/styles",
     ),
     _data_file(
-        ROOT / "gui" / "styles" / "dashboard_light.qss",
-        "gui/styles",
+        ROOT / "gui_v2" / "styles" / "dashboard_light.qss",
+        "gui_v2/styles",
     ),
 ]
-datas.extend(_data_tree(ROOT / "gui" / "map_assets", "gui/map_assets"))
-datas.extend(_data_tree(ROOT / "gui" / "assets" / "icons", "gui/assets/icons"))
+datas.extend(_data_tree(ROOT / "gui_v2" / "map_assets", "gui_v2/map_assets"))
+datas.extend(_data_tree(ROOT / "gui_v2" / "assets" / "icons", "gui_v2/assets/icons"))
 
 # Pyorbital loads this package resource when ``pyorbital.tlefile`` is imported.
 # PyInstaller does not collect package data automatically.

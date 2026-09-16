@@ -1,0 +1,1065 @@
+QMainWindow#guiV2Root {
+    background: ${canvas};
+}
+
+QWidget#guiV2Central {
+    background: ${canvas};
+    color: ${text_primary};
+    font-family: "Segoe UI", "Inter", "Arial", sans-serif;
+    font-size: 12px;
+}
+
+QFrame#guiV2Header {
+    background: ${surface};
+    border: 1px solid ${border};
+    border-radius: 12px;
+}
+
+QLabel#guiV2ProductTitle {
+    color: ${text_primary};
+    font-size: 20px;
+    font-weight: 700;
+}
+
+QLabel#guiV2ContextLabel {
+    color: ${text_secondary};
+    font-size: 12px;
+}
+
+QFrame#guiV2HeaderStatusWidget {
+    background: ${surface};
+    border: 1px solid ${border};
+    border-radius: 10px;
+}
+
+QFrame#guiV2HeaderStatusWidget[level="ready"] {
+    border-color: ${border};
+}
+
+QFrame#guiV2HeaderStatusWidget[level="info"] {
+    border-color: ${info};
+}
+
+QFrame#guiV2HeaderStatusWidget[level="success"] {
+    border-color: ${success};
+}
+
+QFrame#guiV2HeaderStatusWidget[level="warning"] {
+    border-color: ${warning};
+}
+
+QFrame#guiV2HeaderStatusWidget[level="error"] {
+    border-color: ${error};
+}
+
+QFrame#guiV2HeaderStatusWidget[level="busy"] {
+    border-color: ${info};
+}
+
+QLabel#guiV2HeaderStatusLevel {
+    border-radius: 8px;
+    padding: 3px 8px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+}
+
+QLabel#guiV2HeaderStatusLevel[level="ready"] {
+    background: ${surface};
+    color: ${text_primary};
+}
+
+QLabel#guiV2HeaderStatusLevel[level="info"] {
+    background: ${info_surface};
+    color: ${info};
+}
+
+QLabel#guiV2HeaderStatusLevel[level="success"] {
+    background: ${success_surface};
+    color: ${success};
+}
+
+QLabel#guiV2HeaderStatusLevel[level="warning"] {
+    background: ${warning_surface};
+    color: ${warning};
+}
+
+QLabel#guiV2HeaderStatusLevel[level="error"] {
+    background: ${error_surface};
+    color: ${error};
+}
+
+QLabel#guiV2HeaderStatusLevel[level="busy"] {
+    background: ${info_surface};
+    color: ${info};
+}
+
+QLabel#guiV2HeaderStatusMessage {
+    color: ${text_primary};
+    font-weight: 600;
+}
+
+
+QWidget#guiV2NavigationRail {
+    background: ${surface};
+    border: 1px solid ${border};
+    border-radius: 12px;
+}
+
+QLabel#guiV2NavigationTitle {
+    color: ${text_muted};
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+QTreeWidget#guiV2NavigationTree,
+QTreeWidget#guiV2NavigationBottomTree {
+    background: transparent;
+    border: none;
+    color: ${text_primary};
+    outline: none;
+    padding: 4px;
+}
+
+QTreeWidget#guiV2NavigationTree::item,
+QTreeWidget#guiV2NavigationBottomTree::item {
+    min-height: 30px;
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+
+QTreeWidget#guiV2NavigationTree::item:hover,
+QTreeWidget#guiV2NavigationBottomTree::item:hover {
+    background: ${surface_hover};
+    color: ${text_primary};
+}
+
+QTreeWidget#guiV2NavigationTree::item:selected,
+QTreeWidget#guiV2NavigationBottomTree::item:selected {
+    background: ${accent};
+    color: ${selected_text};
+}
+
+QFrame#guiV2NavigationSeparator {
+    background: ${border};
+    border: none;
+}
+
+QFrame#guiV2Workspace {
+    background: ${surface};
+    border: 1px solid ${border};
+    border-radius: 12px;
+}
+
+QFrame#guiV2WorkspaceHeader {
+    background: ${surface_alt};
+    border: 1px solid ${border};
+    border-radius: 10px;
+}
+
+QLabel#guiV2WorkspaceTitle {
+    color: ${text_primary};
+    font-size: 16px;
+    font-weight: 700;
+}
+
+QLabel#guiV2WorkspaceSubtitle {
+    color: ${text_secondary};
+    font-size: 12px;
+}
+
+
+QLabel#guiV2WorkspaceStatusLine {
+    color: ${text_secondary};
+    font-size: 12px;
+    padding: 0 4px 2px 4px;
+}
+QWidget#guiV2WorkspaceGrid {
+    background: transparent;
+}
+
+QScrollArea#guiV2OverpassSetupScrollArea,
+QWidget#guiV2OverpassSetupScrollContent,
+QScrollArea#guiV2OverpassSetupScrollArea > QWidget > QWidget {
+    background: transparent;
+}
+
+QFrame#guiV2Card {
+    background: ${surface_alt};
+    border: 1px solid ${border};
+    border-radius: 12px;
+}
+
+QLabel#guiV2CardTitle {
+    color: ${text_primary};
+    font-size: 13px;
+    font-weight: 700;
+}
+
+QLabel#guiV2CardBody {
+    color: ${text_secondary};
+    font-size: 12px;
+}
+
+
+QPushButton#guiV2NavigationToggle {
+    background: ${surface};
+    color: ${text_primary};
+    border: 1px solid ${border};
+    border-radius: 9px;
+    min-width: 34px;
+    min-height: 30px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+QPushButton#guiV2NavigationToggle:hover {
+    background: ${surface_hover};
+    border-color: ${border_strong};
+}
+
+QSplitter#guiV2MainSplitter::handle {
+    background: ${canvas};
+    border-radius: 3px;
+}
+
+QWidget#guiV2NavigationRail[compact="true"] {
+    background: ${surface};
+}
+
+QWidget#guiV2NavigationRail[compact="true"] QLabel#guiV2NavigationTitle {
+    color: ${text_muted};
+}
+
+QStackedWidget#guiV2NavigationModeStack {
+    background: transparent;
+    border: none;
+}
+
+QWidget#guiV2DomainRail {
+    background: transparent;
+}
+
+QWidget#guiV2NavigationRail[railMode="true"] {
+    background: ${surface};
+}
+
+QToolButton#guiV2RailButton {
+    background: ${surface};
+    color: ${text_primary};
+    border: 1px solid ${border};
+    border-radius: 10px;
+    min-height: 38px;
+    padding: 6px 10px;
+    text-align: left;
+    font-weight: 700;
+}
+
+QToolButton#guiV2RailButton:hover {
+    background: ${surface_hover};
+    border-color: ${border_strong};
+    color: ${text_primary};
+}
+
+QToolButton#guiV2RailButton[active="true"] {
+    background: ${accent};
+    border-color: ${accent};
+    color: ${selected_text};
+}
+
+QToolButton#guiV2RailButton::menu-button {
+    background: transparent;
+    border: none;
+    border-left: 1px solid ${border};
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 18px;
+}
+
+QToolButton#guiV2RailButton[active="true"]::menu-button {
+    border-left-color: ${selected_text};
+}
+
+QFrame#guiV2TimeContext {
+    background: ${surface};
+    border: 1px solid ${border};
+    border-radius: 10px;
+}
+
+QLabel#guiV2TimeContextKey {
+    color: ${text_primary};
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+}
+
+QLabel#guiV2TimeContextValue {
+    color: ${text_primary};
+    font-family: "Cascadia Mono", "Consolas", "Courier New", monospace;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+/* GUI v2 generic form/control styling. Keep labels readable on dark cards. */
+QLabel#guiV2FieldLabel {
+    color: ${text_primary};
+    font-size: 12px;
+    font-weight: 600;
+}
+
+QFrame#guiV2Card QLabel {
+    color: ${text_primary};
+}
+
+QFrame#guiV2Card QLabel#guiV2CardTitle {
+    color: ${text_primary};
+}
+
+QFrame#guiV2Card QLabel#guiV2FieldLabel {
+    color: ${text_primary};
+}
+
+QLineEdit, QDateEdit, QSpinBox, QComboBox, QListWidget, QPlainTextEdit {
+    background: ${surface_alt};
+    color: ${text_primary};
+    border: 1px solid ${border};
+    border-radius: 7px;
+    padding: 5px 8px;
+    selection-background-color: ${accent};
+    selection-color: ${selected_text};
+}
+
+QLineEdit:read-only {
+    background: ${surface_alt};
+    color: ${text_primary};
+}
+
+
+QLineEdit[validationState="error"], QDateEdit[validationState="error"], QComboBox[validationState="error"], QListWidget[validationState="error"] {
+    border-color: ${error};
+}
+
+QLineEdit[validationState="valid"], QDateEdit[validationState="valid"], QComboBox[validationState="valid"], QListWidget[validationState="valid"] {
+    border-color: ${border};
+}
+
+QLineEdit:disabled, QDateEdit:disabled, QSpinBox:disabled, QComboBox:disabled, QListWidget:disabled, QPlainTextEdit:disabled {
+    background: ${disabled_surface};
+    color: ${disabled_text};
+    border-color: ${border};
+}
+
+QComboBox QAbstractItemView {
+    background: ${surface_raised};
+    color: ${text_primary};
+    border: 1px solid ${border};
+    selection-background-color: ${accent};
+    selection-color: ${selected_text};
+}
+
+QCheckBox {
+    color: ${text_primary};
+    spacing: 7px;
+}
+
+QCheckBox:disabled {
+    color: ${disabled_text};
+}
+
+QPushButton {
+    background: ${surface};
+    color: ${text_primary};
+    border: 1px solid ${border};
+    border-radius: 7px;
+    min-height: 22px;
+    padding: 2px 8px;
+    font-weight: 600;
+}
+
+QPushButton:hover {
+    background: ${surface_hover};
+    border-color: ${border_strong};
+}
+
+QPushButton:disabled {
+    background: ${disabled_surface};
+    color: ${disabled_text};
+    border-color: ${border};
+}
+
+QPushButton[buttonRole="primary"]:enabled {
+    background: ${accent};
+    border-color: ${accent};
+    color: ${selected_text};
+}
+
+QPushButton[buttonRole="success"]:enabled {
+    background: ${success};
+    border-color: ${success};
+    color: ${selected_text};
+}
+
+QPushButton[buttonRole="danger"]:enabled {
+    background: ${error};
+    border-color: ${error};
+    color: ${selected_text};
+}
+
+QPushButton[buttonRole="secondary"]:enabled {
+    background: ${surface};
+    border-color: ${border};
+    color: ${text_secondary};
+}
+
+/* Role-button hover keeps each button's semantic hue and shifts its shade,
+   instead of collapsing to the neutral gray surface (which read as the button
+   losing its color) or leaving the state visually unchanged. */
+QPushButton[buttonRole="primary"]:enabled:hover {
+    background: ${accent_hover};
+    border-color: ${accent_hover};
+    color: ${selected_text};
+}
+
+QPushButton[buttonRole="success"]:enabled:hover {
+    background: ${success_hover};
+    border-color: ${success_hover};
+    color: ${selected_text};
+}
+
+QPushButton[buttonRole="danger"]:enabled:hover {
+    background: ${error_hover};
+    border-color: ${error_hover};
+    color: ${selected_text};
+}
+
+QPushButton[buttonRole="secondary"]:enabled:hover {
+    background: ${surface_hover};
+    border-color: ${border_strong};
+    color: ${text_primary};
+}
+
+/* Planner form options: keep radio-button labels readable on dark backgrounds. */
+QRadioButton {
+    color: ${text_primary};
+    spacing: 7px;
+}
+
+QRadioButton:disabled {
+    color: ${disabled_text};
+}
+
+QFrame#guiV2PlannerStatusChip {
+    background: ${surface};
+    border: 1px solid ${border};
+    border-radius: 8px;
+}
+
+QFrame#guiV2PlannerStatusChip[ready="true"] {
+    background: ${surface};
+    border-color: ${border};
+}
+
+QFrame#guiV2PlannerStatusChip[ready="true"] QLabel {
+    color: ${text_primary};
+}
+
+
+QFrame#guiV2PlannerControlsSection {
+    background: ${surface};
+    border: 1px solid ${border};
+    border-radius: 10px;
+}
+
+QLabel#guiV2CompactCardTitle {
+    color: ${text_primary};
+    font-size: 12px;
+    font-weight: 700;
+}
+
+QStackedWidget#guiV2PlannerBinningOptionStack,
+QStackedWidget#guiV2PlannerBinningOptionStack QWidget {
+    background: transparent;
+}
+
+/* GUI-v2 planner results workspace cards. */
+QFrame#guiV2PlannerPlotWorkspace,
+QFrame#guiV2PlannerGeneratedPlanWorkspace {
+    background: ${surface_alt};
+    border: 1px solid ${border};
+    border-radius: 12px;
+}
+
+QFrame#guiV2PlannerPlotWorkspace QWidget,
+QFrame#guiV2PlannerGeneratedPlanWorkspace QWidget {
+    background: transparent;
+    color: ${text_primary};
+}
+
+QFrame#guiV2PlannerPlotWorkspace QLabel#guiV2CardTitle,
+QFrame#guiV2PlannerGeneratedPlanWorkspace QLabel#guiV2CardTitle {
+    color: ${text_primary};
+}
+
+QFrame#guiV2PlannerPlotWorkspace QLabel#guiV2CardBody,
+QFrame#guiV2PlannerGeneratedPlanWorkspace QLabel#guiV2CardBody {
+    color: ${text_secondary};
+}
+
+
+QFrame#guiV2PlannerObservationInfoWorkspace {
+    background: ${surface_alt};
+    border: 1px solid ${border};
+    border-radius: 12px;
+}
+
+
+QFrame#guiV2PlannerObservationInfoWorkspace QFrame#guiV2ObservationDetailsFrame {
+    background: ${surface};
+    border: 1px solid ${border};
+    border-radius: 8px;
+}
+
+QFrame#guiV2PlannerObservationInfoWorkspace QWidget#guiV2ObservationStartBlock {
+    background: transparent;
+}
+
+QFrame#guiV2PlannerObservationInfoWorkspace QLabel {
+    color: ${text_secondary};
+}
+
+QFrame#guiV2PlannerObservationInfoWorkspace QLabel#guiV2CardTitle {
+    color: ${text_primary};
+}
+
+QFrame#guiV2PlannerObservationInfoWorkspace QLabel#guiV2ObservationInfoSectionTitle {
+    color: ${text_primary};
+    font-size: 12px;
+    font-weight: 700;
+}
+
+QFrame#guiV2PlannerObservationInfoWorkspace QLabel#guiV2ObservationInfoName {
+    color: ${text_secondary};
+    font-size: 12px;
+    font-weight: 600;
+}
+
+QFrame#guiV2PlannerObservationInfoWorkspace QLabel#guiV2ObservationInfoValue {
+    color: ${text_primary};
+    font-size: 12px;
+    font-weight: 600;
+}
+
+QFrame#guiV2PlannerObservationInfoWorkspace QLabel#guiV2ObservationStartLabel {
+    color: ${text_primary};
+    font-size: 15px;
+    font-weight: 700;
+}
+
+QFrame#guiV2PlannerObservationInfoWorkspace QLabel#observationStartTime {
+    color: ${text_primary};
+    font-size: 22px;
+    font-weight: 700;
+}
+
+QFrame#guiV2PlannerObservationInfoWorkspace QLineEdit {
+    background: ${surface};
+    color: ${text_primary};
+    border: 1px solid ${border};
+    border-radius: 7px;
+    padding: 5px 8px;
+}
+
+QTableView#guiV2PlannerGeneratedPlanTable {
+    background: ${surface_alt};
+    alternate-background-color: ${surface_alt};
+    color: ${text_primary};
+    gridline-color: ${border};
+    border: 1px solid ${border};
+    border-radius: 6px;
+    selection-background-color: ${accent};
+    selection-color: ${selected_text};
+}
+
+QTableView#guiV2PlannerGeneratedPlanTable QHeaderView::section {
+    background: ${surface_alt};
+    color: ${text_primary};
+    border: 0;
+    border-right: 1px solid ${border};
+    border-bottom: 1px solid ${border};
+    padding: 4px 6px;
+    font-weight: 600;
+}
+
+/* Planner result card action buttons. */
+QWidget#guiV2PlannerGeneratedPlanActions QPushButton,
+QFrame#guiV2PlannerObservationInfoWorkspace QPushButton {
+    background: ${surface};
+    color: ${text_primary};
+    border: 1px solid ${border};
+    border-radius: 7px;
+    min-height: 22px;
+    padding: 2px 8px;
+    font-weight: 600;
+}
+
+QWidget#guiV2PlannerGeneratedPlanActions QPushButton:hover,
+QFrame#guiV2PlannerObservationInfoWorkspace QPushButton:hover {
+    background: ${surface_hover};
+    border-color: ${border_strong};
+    color: ${text_primary};
+}
+
+QWidget#guiV2PlannerGeneratedPlanActions QPushButton[buttonRole="primary"]:enabled {
+    background: ${accent};
+    border-color: ${accent};
+    color: ${selected_text};
+}
+
+QWidget#guiV2PlannerGeneratedPlanActions QPushButton[buttonRole="success"]:enabled {
+    background: ${success};
+    border-color: ${success};
+    color: ${selected_text};
+}
+
+QWidget#guiV2PlannerGeneratedPlanActions QPushButton[buttonRole="danger"]:enabled,
+QFrame#guiV2PlannerObservationInfoWorkspace QPushButton[buttonRole="danger"]:enabled {
+    background: ${error};
+    border-color: ${error};
+    color: ${selected_text};
+}
+
+QWidget#guiV2PlannerGeneratedPlanActions QPushButton[buttonRole="primary"]:enabled:hover {
+    background: ${accent_hover};
+    border-color: ${accent_hover};
+    color: ${selected_text};
+}
+
+QWidget#guiV2PlannerGeneratedPlanActions QPushButton[buttonRole="success"]:enabled:hover {
+    background: ${success_hover};
+    border-color: ${success_hover};
+    color: ${selected_text};
+}
+
+QWidget#guiV2PlannerGeneratedPlanActions QPushButton[buttonRole="danger"]:enabled:hover,
+QFrame#guiV2PlannerObservationInfoWorkspace QPushButton[buttonRole="danger"]:enabled:hover {
+    background: ${error_hover};
+    border-color: ${error_hover};
+    color: ${selected_text};
+}
+
+QWidget#guiV2PlannerGeneratedPlanActions QPushButton:disabled,
+QFrame#guiV2PlannerObservationInfoWorkspace QPushButton:disabled {
+    background: ${disabled_surface};
+    color: ${disabled_text};
+    border-color: ${border};
+}
+
+
+
+/* Task 50A planner preferences editor: keep tab pages and column mapping on the GUI-v2 dark theme. */
+/* The General configuration page shares this styling so both configuration
+   editors present identical inner tabs. */
+QTabWidget#guiV2PlannerPreferencesTabs,
+QTabWidget#guiV2ConfigurationGeneralTabs {
+    background-color: ${surface};
+    color: ${text_primary};
+    border: none;
+}
+
+QTabWidget#guiV2PlannerPreferencesTabs QStackedWidget,
+QTabWidget#guiV2ConfigurationGeneralTabs QStackedWidget {
+    background-color: ${surface};
+    border: none;
+}
+
+QTabWidget#guiV2PlannerPreferencesTabs::pane,
+QTabWidget#guiV2ConfigurationGeneralTabs::pane {
+    border: 1px solid ${border};
+    border-radius: 8px;
+    background-color: ${surface};
+    top: -1px;
+}
+
+QTabWidget#guiV2PlannerPreferencesTabs::tab-bar,
+QTabWidget#guiV2ConfigurationGeneralTabs::tab-bar {
+    left: 0px;
+    background-color: ${surface};
+}
+
+QTabWidget#guiV2PlannerPreferencesTabs QTabBar,
+QTabWidget#guiV2ConfigurationGeneralTabs QTabBar {
+    background-color: ${surface};
+    color: ${text_primary};
+    qproperty-drawBase: 0;
+}
+
+QTabWidget#guiV2PlannerPreferencesTabs QTabBar::tab,
+QTabWidget#guiV2ConfigurationGeneralTabs QTabBar::tab {
+    background-color: ${surface};
+    color: ${text_primary};
+    border: 1px solid ${border};
+    border-bottom: none;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 7px 12px;
+    margin-right: 3px;
+}
+
+QTabWidget#guiV2PlannerPreferencesTabs QTabBar::tab:selected,
+QTabWidget#guiV2ConfigurationGeneralTabs QTabBar::tab:selected {
+    background-color: ${accent};
+    color: ${selected_text};
+}
+
+QTabWidget#guiV2PlannerPreferencesTabs QTabBar::tab:hover,
+QTabWidget#guiV2ConfigurationGeneralTabs QTabBar::tab:hover {
+    background-color: ${surface_hover};
+    color: ${text_primary};
+}
+
+QScrollArea#guiV2PlannerPreferencesGeneralTab,
+QScrollArea#guiV2PlannerPreferencesDiagnosticsTab,
+QScrollArea#guiV2PlannerPreferencesColumnsTab,
+QWidget#guiV2PlannerPreferencesGeneralTabContent,
+QWidget#guiV2PlannerPreferencesDiagnosticsTabContent,
+QWidget#guiV2PlannerPreferencesColumnsTabContent,
+QScrollArea#guiV2PlannerPreferencesGeneralTab > QWidget > QWidget,
+QScrollArea#guiV2PlannerPreferencesDiagnosticsTab > QWidget > QWidget,
+QScrollArea#guiV2PlannerPreferencesColumnsTab > QWidget > QWidget {
+    background-color: ${surface};
+    border: none;
+}
+
+QTableWidget#guiV2PlannerColumnMappingTable {
+    background-color: ${surface_alt};
+    alternate-background-color: ${surface_alt};
+    color: ${text_primary};
+    border: 1px solid ${border};
+    border-radius: 6px;
+    gridline-color: ${border};
+    selection-background-color: ${accent};
+    selection-color: ${selected_text};
+}
+
+QTableWidget#guiV2PlannerColumnMappingTable::item {
+    background-color: transparent;
+    color: ${text_primary};
+    padding: 4px 6px;
+}
+
+QTableWidget#guiV2PlannerColumnMappingTable::item:selected {
+    background-color: ${accent};
+    color: ${selected_text};
+}
+
+QTableWidget#guiV2PlannerColumnMappingTable QHeaderView::section {
+    background-color: ${surface_alt};
+    color: ${text_primary};
+    border: 0;
+    border-right: 1px solid ${border};
+    border-bottom: 1px solid ${border};
+    padding: 5px 7px;
+    font-weight: 700;
+}
+
+QTableWidget#guiV2PlannerColumnMappingTable QTableCornerButton::section {
+    background-color: ${surface_alt};
+    border: 0;
+    border-right: 1px solid ${border};
+    border-bottom: 1px solid ${border};
+}
+
+QTableWidget#guiV2PlannerColumnMappingTable QSpinBox {
+    background-color: ${surface_alt};
+    color: ${text_primary};
+    border: 1px solid ${border};
+    border-radius: 6px;
+    padding: 3px 6px;
+}
+
+/* Task 48E planner diagnostics workspace */
+QWidget#guiV2PlannerDiagnosticsWorkspace {
+    background: transparent;
+}
+
+QWidget#guiV2PlannerDiagnosticsOverview,
+QWidget#guiV2PlannerDiagnosticsDetailsContent,
+QWidget#guiV2PlannerDiagnosticsPlotPage,
+QScrollArea#guiV2PlannerDiagnosticsScrollArea QWidget {
+    background-color: ${surface};
+}
+
+QFrame#guiV2DiagnosticsSummaryStrip,
+QFrame#guiV2DiagnosticsCard {
+    background-color: ${surface_alt};
+    border: 1px solid ${border};
+    border-radius: 8px;
+}
+
+QLabel#guiV2DiagnosticsCardTitle,
+QLabel#guiV2DiagnosticsTableTitle,
+QLabel#guiV2DiagnosticsPlotTitle {
+    color: ${text_primary};
+    font-size: 13px;
+    font-weight: 700;
+}
+
+QLabel#guiV2DiagnosticsCardBody {
+    color: ${text_secondary};
+    font-size: 12px;
+}
+
+QTabWidget#guiV2PlannerDiagnosticsTabs::pane {
+    border: 1px solid ${border};
+    border-radius: 8px;
+    background-color: ${surface};
+    top: -1px;
+}
+
+QTabWidget#guiV2PlannerDiagnosticsTabs QTabBar::tab {
+    background-color: ${surface};
+    color: ${text_primary};
+    border: 1px solid ${border};
+    border-bottom: none;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 7px 12px;
+    margin-right: 3px;
+}
+
+QTabWidget#guiV2PlannerDiagnosticsTabs QTabBar::tab:selected {
+    background-color: ${accent};
+    color: ${selected_text};
+}
+
+QTabWidget#guiV2PlannerDiagnosticsTabs QTabBar::tab:hover {
+    background-color: ${surface_hover};
+    color: ${text_primary};
+}
+
+QTabWidget#guiV2PlannerDiagnosticsPlotTabs::pane {
+    border: 1px solid ${border};
+    border-radius: 8px;
+    background-color: ${surface};
+    top: -1px;
+}
+
+QTabWidget#guiV2PlannerDiagnosticsPlotTabs QTabBar::tab {
+    background-color: ${surface};
+    color: ${text_primary};
+    border: 1px solid ${border};
+    border-bottom: none;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 7px 12px;
+    margin-right: 3px;
+}
+
+QTabWidget#guiV2PlannerDiagnosticsPlotTabs QTabBar::tab:selected {
+    background-color: ${accent};
+    color: ${selected_text};
+}
+
+QTabWidget#guiV2PlannerDiagnosticsPlotTabs QTabBar::tab:hover {
+    background-color: ${surface_hover};
+    color: ${text_primary};
+}
+
+QLabel#guiV2DiagnosticsPlotDescription {
+    color: ${text_secondary};
+    font-size: 12px;
+}
+
+
+QTableView#guiV2PlannerDiagnosticsTable {
+    background-color: ${surface_alt};
+    alternate-background-color: ${surface_alt};
+    color: ${text_primary};
+    border: 1px solid ${border};
+    border-radius: 6px;
+    gridline-color: ${border};
+    selection-background-color: ${accent};
+    selection-color: ${selected_text};
+}
+
+QTableView#guiV2PlannerDiagnosticsTable QHeaderView::section {
+    background-color: ${surface_alt};
+    color: ${text_primary};
+    border: 0;
+    border-right: 1px solid ${border};
+    border-bottom: 1px solid ${border};
+    padding: 5px 7px;
+    font-weight: 700;
+}
+
+QPlainTextEdit#guiV2PlannerDiagnosticsDetailsText {
+    background-color: ${surface_alt};
+    color: ${text_primary};
+    border: 1px solid ${border};
+    border-radius: 6px;
+    selection-background-color: ${accent};
+    selection-color: ${selected_text};
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 12px;
+}
+
+QScrollArea#guiV2PlannerDiagnosticsScrollArea {
+    background: transparent;
+    border: none;
+}
+
+
+/* Task 58 shared component roles */
+QWidget#guiV2Shell,
+QStackedWidget#guiV2WorkspaceStack,
+QWidget#guiV2WorkspaceGrid,
+QWidget#guiV2PlannerDiagnosticsOverview,
+QWidget#guiV2PlannerDiagnosticsDetailsContent,
+QWidget#guiV2PlannerDiagnosticsPlotPage {
+    background: transparent;
+    color: ${text_primary};
+}
+
+QTabWidget[visualRole="workspaceTabs"]::pane,
+QTabWidget#guiV2PlannerDiagnosticsTabs::pane,
+QTabWidget#guiV2PlannerDiagnosticsPlotTabs::pane,
+QTabWidget#guiV2PlannerPreferencesTabs::pane {
+    background: ${surface};
+    border: 1px solid ${border};
+    border-radius: 8px;
+}
+
+QTabBar::tab {
+    background: ${surface_alt};
+    color: ${text_secondary};
+    border: 1px solid ${border};
+    border-bottom: none;
+    padding: 7px 12px;
+    min-height: 18px;
+}
+
+QTabBar::tab:selected {
+    background: ${surface_raised};
+    color: ${text_primary};
+    border-color: ${border_strong};
+}
+
+QTabBar::tab:hover:!selected {
+    background: ${surface_hover};
+    color: ${text_primary};
+}
+
+QAbstractItemView {
+    background: ${surface};
+    alternate-background-color: ${surface_alt};
+    color: ${text_primary};
+    border: 1px solid ${border};
+    gridline-color: ${border};
+    selection-background-color: ${accent};
+    selection-color: ${selected_text};
+    outline: none;
+}
+
+QHeaderView::section {
+    background: ${surface_raised};
+    color: ${text_primary};
+    border: none;
+    border-right: 1px solid ${border};
+    border-bottom: 1px solid ${border};
+    padding: 6px 8px;
+    font-weight: 700;
+}
+
+QLineEdit:focus,
+QComboBox:focus,
+QSpinBox:focus,
+QDoubleSpinBox:focus,
+QDateTimeEdit:focus,
+QPlainTextEdit:focus,
+QTextEdit:focus,
+QTableView:focus,
+QTableWidget:focus,
+QTreeWidget:focus,
+QPushButton:focus {
+    border: 2px solid ${focus};
+}
+
+QToolTip {
+    background: ${surface_raised};
+    color: ${text_primary};
+    border: 1px solid ${border_strong};
+    padding: 5px 7px;
+}
+
+QMenu {
+    background: ${surface_raised};
+    color: ${text_primary};
+    border: 1px solid ${border_strong};
+    padding: 4px;
+}
+
+QMenu::item {
+    padding: 6px 18px;
+    border-radius: 4px;
+}
+
+QMenu::item:selected {
+    background: ${accent};
+    color: ${selected_text};
+}
+
+QScrollBar:vertical {
+    background: ${surface};
+    width: 12px;
+    margin: 0;
+}
+QScrollBar::handle:vertical {
+    background: ${border_strong};
+    min-height: 28px;
+    border-radius: 5px;
+    margin: 2px;
+}
+QScrollBar::handle:vertical:hover { background: ${focus}; }
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical,
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical { background: transparent; height: 0; }
+
+QScrollBar:horizontal {
+    background: ${surface};
+    height: 12px;
+    margin: 0;
+}
+QScrollBar::handle:horizontal {
+    background: ${border_strong};
+    min-width: 28px;
+    border-radius: 5px;
+    margin: 2px;
+}
+QScrollBar::handle:horizontal:hover { background: ${focus}; }
+QScrollBar::add-line:horizontal,
+QScrollBar::sub-line:horizontal,
+QScrollBar::add-page:horizontal,
+QScrollBar::sub-page:horizontal { background: transparent; width: 0; }
+
+QLabel#guiV2PlannerLoadIndicator[loadState="idle"] { color: ${text_muted}; }
+QLabel#guiV2PlannerLoadIndicator[loadState="loading"] { color: ${warning}; }
+QLabel#guiV2PlannerLoadIndicator[loadState="loaded"] { color: ${success}; }
+QLabel#guiV2PlannerLoadIndicator[loadState="error"] { color: ${error}; }
+QLabel#guiV2PlannerLoadIndicator[loadState="disabled"] { color: ${disabled_text}; }
+
+QWidget#guiV2LoadingOverlay {
+    background: ${overlay};
+}
+QFrame#guiV2LoadingPanel {
+    background: ${surface_raised};
+    border: 1px solid ${border_strong};
+    border-radius: 12px;
+}
+QLabel#guiV2LoadingMessage {
+    color: ${text_primary};
+    font-size: 13px;
+    font-weight: 650;
+}

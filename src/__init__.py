@@ -19,7 +19,7 @@ def __getattr__(name: str) -> Any:
     """Resolve legacy top-level exports lazily.
 
     Top-level eager imports of prediction/web services pull optional astronomy
-    dependencies into unrelated GUI configuration workflows.  Lazy export
+    dependencies into unrelated GUI-v2 configuration workflows.  Lazy export
     resolution preserves the historical public names while keeping package
     import side effects minimal.
     """

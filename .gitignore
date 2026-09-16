@@ -10,8 +10,10 @@ __pycache__/
 # Editable-install metadata
 *.egg-info/
 
-# JetBrains IDE project state — kept local, not published
-/.idea/
+# JetBrains project state that drifts locally
+.idea/*.iml
+.idea/misc.xml
+.idea/csv-editor.xml
 
 # Runtime / user state (see data/*.example.json for shipped templates)
 /data/user_locations.json
@@ -29,35 +31,8 @@ __pycache__/
 /leosat_obs_plan_*.json
 /leosat_obs_plan_*_diagnostics.json
 
-# Internal development documentation — kept local, not published
-/docs/
-# Dev tooling and tests — kept local, not published for now
-/tools/
-/tests/
-# Contributor/changelog notes kept local for now (README is the public doc)
-/CONTRIBUTING.md
-/CHANGELOG.md
-
-# Legacy single-file PyQt5 prototype, superseded by gui (kept local)
-/leosat-obs-selector.py
-
-# Flask web app — not in the initial (GUI-only) release. Kept local and
-# runnable; folded into the public repo once it reaches GUI feature parity.
-# (The shared core in src/ — models, observation_planner, prediction_core,
-#  utils, config, and the shared services — stays published.)
-/src/main.py
-/src/routes/
-/src/web/
-/src/db/
-/src/templates/
-/src/services/results_handler.py
-/frontend/
-/static/
-/package.json
-/package-lock.json
-/requirements_web.txt
-/scripts/run_server.py
-/scripts/run_server_bak.py
+# Generated documentation output
+docs/manual/gui_user_manual.pdf
 
 # Local development TLS certificates (self-signed; generate per machine)
 /certs/*.key

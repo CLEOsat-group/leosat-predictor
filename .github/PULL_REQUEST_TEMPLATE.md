@@ -6,10 +6,10 @@ What does this change do, and why?
 
 This project has no unit-test framework — validation means running the real, affected production path (see [docs/development/VALIDATION_WORKFLOW.md](docs/development/VALIDATION_WORKFLOW.md)). Describe what you actually ran:
 
-- [ ] `python -m compileall -q src gui scripts tools/dev`
+- [ ] `python -m compileall -q src gui_v2 scripts tools/dev`
 - [ ] Ran the affected desktop GUI workflow (`python scripts/run_gui.py`) end-to-end
 - [ ] Ran the affected web route/workflow end-to-end
-- [ ] Rebuilt and launched the Windows GUI artifact (only if packaging/`gui` changed — see [docs/deployment/windows_gui_distribution.md](docs/deployment/windows_gui_distribution.md))
+- [ ] Rebuilt and launched the Windows GUI artifact (only if packaging/`gui_v2` changed — see [docs/deployment/windows_gui_distribution.md](docs/deployment/windows_gui_distribution.md))
 - [ ] Other (describe):
 
 ## Documentation
