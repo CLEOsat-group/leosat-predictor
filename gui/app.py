@@ -1,4 +1,4 @@
-"""Application bootstrap for the GUI replacement-path application."""
+"""Application bootstrap for the GUI application."""
 
 from __future__ import annotations
 

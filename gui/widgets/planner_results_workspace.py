@@ -43,7 +43,7 @@ from gui.widgets.planner_visibility_table import PlannerVisibilityTable
 
 
 
-class V2PlannerVisibilityPlot(ObservationVisibilityPlot):
+class PlannerVisibilityPlot(ObservationVisibilityPlot):
     """GUI planner visibility plot using the shared scientific palette."""
 
     def _create_plot(self) -> pg.PlotWidget:
@@ -103,7 +103,7 @@ class PlannerPlotWorkspace(PlannerResultCard):
         self.tabs = QTabWidget(self)
         self.tabs.setObjectName("guiPlannerVisibilityTabs")
 
-        self.visibility_plot = V2PlannerVisibilityPlot(self.tabs)
+        self.visibility_plot = PlannerVisibilityPlot(self.tabs)
         self.visibility_plot.setObjectName("guiPlannerVisibilityPlot")
         self.visibility_plot.setMinimumHeight(160)
         self.tabs.addTab(self.visibility_plot, "Plot")

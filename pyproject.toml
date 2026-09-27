@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "leosat-predictor"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Prediction, planning, and visualization of Low-Earth-Orbit satellite passes (PyQt6 desktop GUI)."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -57,6 +57,10 @@ build = [
 
 [project.scripts]
 leosat-predictor-gui = "gui.app:run"
+
+# Single source of truth: the version is read from gui/__init__.py __version__.
+[tool.setuptools.dynamic]
+version = { attr = "gui.__version__" }
 
 [tool.setuptools.packages.find]
 # Flat layout: two importable top-level packages, gui/ and src/.

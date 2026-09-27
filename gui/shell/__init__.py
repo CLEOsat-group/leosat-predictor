@@ -1,4 +1,4 @@
-"""Shell components for the GUI replacement path.
+"""Shell components for the GUI.
 
 The package exposes shell widgets lazily so lightweight services can import
 ``gui.shell.mode_registry`` without importing PyQt-backed dashboard widgets.

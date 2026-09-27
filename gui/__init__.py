@@ -1,15 +1,17 @@
-"""Clean replacement-path GUI package for the LEO satellite predictor.
+"""Desktop GUI package for the LEO satellite predictor.
 
-The package intentionally lives beside the current ``gui`` implementation.  It
-uses final-intent names so it can later be promoted without carrying migration
-labels through the production codebase.
+This is the production PyQt6 desktop application: the dashboard shell,
+workflow-stage navigation, and the Overpass, Precise, and Observation Planner
+workflow pages.
 """
 
 from __future__ import annotations
 
 __all__ = ["__version__"]
 
-__version__ = "0.1.0"
+# Single source of truth for the application version. Packaging metadata in
+# pyproject.toml derives from this via setuptools' dynamic ``attr`` support.
+__version__ = "1.0.0"
 
 
 def _preload_system_icu() -> None:

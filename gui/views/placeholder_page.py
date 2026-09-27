@@ -1,4 +1,4 @@
-"""Professional placeholder pages for the GUI replacement path."""
+"""Professional placeholder pages for the GUI."""
 
 from __future__ import annotations
 

@@ -64,7 +64,7 @@ class _ServiceBundle(Protocol):
 class MainWindow(QMainWindow):
     """Top-level GUI window frame.
 
-    The class owns the replacement-path shell and workflow pages.  Long-running
+    The class owns the dashboard shell and workflow pages.  Long-running
     execution remains delegated to page-specific controllers and services.
     """
 

@@ -1,4 +1,4 @@
-"""Navigation metadata for the replacement-path dashboard shell.
+"""Navigation metadata for the dashboard shell.
 
 The model is deliberately data-only. Widgets consume this structure, but it has
 no PyQt dependency and no workflow logic. Stable page identifiers are separated

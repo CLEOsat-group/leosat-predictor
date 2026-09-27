@@ -75,7 +75,7 @@ class LocalMapAssetServer:
         self.base_url = f"http://{host}:{port}"
         self._thread = threading.Thread(
             target=self._server.serve_forever,
-            name="GuiV2MapAssetServer",
+            name="MapAssetServer",
             daemon=True,
         )
         self._thread.start()

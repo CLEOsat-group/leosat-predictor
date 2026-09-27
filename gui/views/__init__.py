@@ -1,4 +1,4 @@
-"""View widgets for the GUI replacement path."""
+"""View widgets for the GUI."""
 
 from __future__ import annotations
 

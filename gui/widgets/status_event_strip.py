@@ -9,8 +9,7 @@ class StatusEventStrip(HeaderStatusWidget):
     """Backward-compatible alias for the header-integrated status widget.
 
     The production shell instantiates :class:`HeaderStatusWidget` directly.  This
-    class remains temporarily available for older imports and historical Task 43
-    verifiers while GUI continues its replacement path.
+    class remains available as a backward-compatible alias for older imports.
     """
 
 

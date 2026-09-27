@@ -261,7 +261,7 @@ class DiagnosticsInfoCard(QFrame):
         repolish(self)
 
 
-class V2PlannerDiagnosticsPlots(QWidget):
+class PlannerDiagnosticsPlots(QWidget):
     """Render backend diagnostics plot series using GUI theme colors.
 
     The plot workspace uses sub-tabs so each diagnostic concept has its own
@@ -843,7 +843,7 @@ class PlannerDiagnosticsWorkspace(QWidget):
         layout.setContentsMargins(12, 12, 12, 12)
         layout.setHorizontalSpacing(8)
         layout.setVerticalSpacing(8)
-        self.diagnostics_plots = V2PlannerDiagnosticsPlots(tab)
+        self.diagnostics_plots = PlannerDiagnosticsPlots(tab)
         layout.addWidget(self.diagnostics_plots, 0, 0)
         layout.setRowStretch(0, 1)
         layout.setColumnStretch(0, 1)
@@ -962,5 +962,5 @@ class PlannerDiagnosticsWorkspace(QWidget):
 __all__ = (
     "DiagnosticsTableModel",
     "PlannerDiagnosticsWorkspace",
-    "V2PlannerDiagnosticsPlots",
+    "PlannerDiagnosticsPlots",
 )
