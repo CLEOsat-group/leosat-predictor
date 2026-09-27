@@ -37,6 +37,18 @@
             ],
             "category": "VIIRS"
         },
+        "vanguard": {
+            "url": "https://celestrak.org/NORAD/elements/gp.php?INTDES=1958-002&FORMAT=tle",
+            "batch_download": true,
+            "default_satellites": [],
+            "category": "MISC"
+        },
+        "alouette": {
+            "url": "https://celestrak.org/NORAD/elements/gp.php?INTDES=1962-049&FORMAT=tle",
+            "batch_download": true,
+            "default_satellites": [],
+            "category": "MISC"
+        },
         "oneweb": {
             "url": "https://celestrak.org/NORAD/elements/supplemental/sup-gp.php?FILE=oneweb&FORMAT=tle",
             "batch_download": true,

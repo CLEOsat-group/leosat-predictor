@@ -1,6 +1,6 @@
 # leosat-predictor
 
-Calculate and visualize passes of Low-Earth-Orbit satellites through the production GUI-v2 desktop workflow or web workflow.
+Calculate and visualize passes of Low-Earth-Orbit satellites through the production GUI desktop workflow or web workflow.
 
 ## Quick Start
 
@@ -11,7 +11,7 @@ python -m pip install -r requirements_gui.txt
 python scripts\run_gui.py
 ```
 
-GUI v2 is the active desktop GUI. The legacy GUI v1 source is archived under
+GUI is the active desktop GUI. The legacy GUI v1 source is archived under
 `docs/archive/gui_v1_legacy_reference/gui` for reference only.
 
 For documentation authority, current docs, and archived planning history, see [docs/README.md](docs/README.md).

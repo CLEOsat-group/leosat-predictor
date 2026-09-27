@@ -1,5 +1,5 @@
 # -*- mode: python ; coding: utf-8 -*-
-"""PyInstaller specification for the production GUI-v2 application.
+"""PyInstaller specification for the production GUI application.
 
 The same dependency graph supports both a fast-start one-folder distribution
 and a portable one-file executable.  Build mode is selected through
@@ -118,16 +118,16 @@ def _data_tree(
 datas = [
     _data_file(ROOT / "config" / "config.json", "config"),
     _data_file(
-        ROOT / "gui_v2" / "styles" / "dashboard_dark.qss",
-        "gui_v2/styles",
+        ROOT / "gui" / "styles" / "dashboard_dark.qss",
+        "gui/styles",
     ),
     _data_file(
-        ROOT / "gui_v2" / "styles" / "dashboard_light.qss",
-        "gui_v2/styles",
+        ROOT / "gui" / "styles" / "dashboard_light.qss",
+        "gui/styles",
     ),
 ]
-datas.extend(_data_tree(ROOT / "gui_v2" / "map_assets", "gui_v2/map_assets"))
-datas.extend(_data_tree(ROOT / "gui_v2" / "assets" / "icons", "gui_v2/assets/icons"))
+datas.extend(_data_tree(ROOT / "gui" / "map_assets", "gui/map_assets"))
+datas.extend(_data_tree(ROOT / "gui" / "assets" / "icons", "gui/assets/icons"))
 
 # Pyorbital loads this package resource when ``pyorbital.tlefile`` is imported.
 # PyInstaller does not collect package data automatically.
@@ -137,6 +137,37 @@ datas.extend(
         includes=["etc/platforms.txt"],
     )
 )
+
+def _conda_mkl_binaries() -> list[tuple[str, str]]:
+    """Collect Intel MKL / OpenMP runtime DLLs from a conda interpreter.
+
+    Conda's numpy and scipy link against Intel MKL, whose dispatcher
+    (``mkl_rt``) loads the threading layer, core, and ISA-specific kernel DLLs
+    dynamically with ``LoadLibrary`` at runtime. PyInstaller's static binary
+    dependency analysis cannot follow those dynamic loads, so the DLLs are
+    omitted from the bundle and the frozen application aborts with
+    ``mkl_intel_thread.2.dll`` / ``libiomp5md.dll`` load failures on launch.
+
+    These libraries live in ``<sys.prefix>/Library/bin`` on conda for Windows.
+    When that directory exists we bundle the full MKL and OpenMP runtime so the
+    frozen application works regardless of the target CPU's instruction set.
+    Non-conda interpreters (pip/OpenBLAS numpy) have no such directory and are
+    left untouched.
+    """
+
+    import sys
+
+    library_bin = Path(sys.prefix) / "Library" / "bin"
+    if not library_bin.is_dir():
+        return []
+
+    prefixes = ("mkl_", "libiomp", "libimalloc", "libmmd")
+    collected: list[tuple[str, str]] = []
+    for dll in sorted(library_bin.glob("*.dll")):
+        if dll.name.lower().startswith(prefixes):
+            collected.append((str(dll), "."))
+    return collected
+
 
 def _scipy_array_api_compat_submodules() -> list[str]:
     """Collect scipy's vendored array-API compat shim, whichever vendor path
@@ -204,7 +235,7 @@ excludes = [
 analysis = Analysis(
     [str(ROOT / "scripts" / "run_gui.py")],
     pathex=[str(ROOT)],
-    binaries=[],
+    binaries=_conda_mkl_binaries(),
     datas=datas,
     hiddenimports=hiddenimports,
     hookspath=[],
