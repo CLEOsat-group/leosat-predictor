@@ -11,7 +11,7 @@ __all__ = ["__version__"]
 
 # Single source of truth for the application version. Packaging metadata in
 # pyproject.toml derives from this via setuptools' dynamic ``attr`` support.
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 
 def _preload_system_icu() -> None:

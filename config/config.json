@@ -11,18 +11,21 @@
     "tle_sources": {
         "starlink": {
             "url": "https://celestrak.org/NORAD/elements/supplemental/sup-gp.php?FILE=starlink&FORMAT=tle",
+            "fallback_url": "https://celestrak.org/NORAD/elements/gp.php?GROUP=starlink&FORMAT=tle",
             "batch_download": true,
             "default_satellites": [],
             "category": "LEO"
         },
         "kuiper": {
             "url": "https://celestrak.org/NORAD/elements/supplemental/sup-gp.php?FILE=kuiper&FORMAT=tle",
+            "fallback_url": "https://celestrak.org/NORAD/elements/gp.php?GROUP=kuiper&FORMAT=tle",
             "batch_download": true,
             "default_satellites": [],
             "category": "LEO"
         },
         "ast": {
             "url": "https://celestrak.org/NORAD/elements/supplemental/sup-gp.php?FILE=ast&FORMAT=tle",
+            "fallback_url": "https://celestrak.org/NORAD/elements/gp.php?GROUP=ast&FORMAT=tle",
             "batch_download": true,
             "default_satellites": [],
             "category": "LEO"
@@ -51,6 +54,7 @@
         },
         "oneweb": {
             "url": "https://celestrak.org/NORAD/elements/supplemental/sup-gp.php?FILE=oneweb&FORMAT=tle",
+            "fallback_url": "https://celestrak.org/NORAD/elements/gp.php?GROUP=oneweb&FORMAT=tle",
             "batch_download": true,
             "default_satellites": [],
             "category": "LEO"

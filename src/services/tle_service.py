@@ -7,6 +7,7 @@ separate cache, network, and parser implementations.
 
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -15,6 +16,18 @@ from typing import Mapping, Any
 import requests
 
 from src.config import Config
+
+logger = logging.getLogger(__name__)
+
+
+class TleRateLimitedError(RuntimeError):
+    """Raised when a TLE source refuses a download due to rate limiting.
+
+    Celestrak's supplemental GP endpoint (``sup-gp.php``) returns HTTP 403 with a
+    "limit requests to once every 2 hours" message when the same ``FILE`` is
+    re-requested inside that window.  Callers can catch this and fall back to the
+    cached copy, which the same response confirms is still current.
+    """
 
 
 @dataclass(frozen=True)
@@ -131,8 +144,23 @@ class TleService:
         normalized = self._normalize_constellation(constellation)
         cached_file = self.get_cached_tle_file(normalized)
         if force_download or cached_file is None or self.is_tle_expired(cached_file):
-            tle_data = self.download_tle_data(normalized)
-            cached_file = self.save_tle_to_cache(normalized, tle_data)
+            try:
+                tle_data = self.download_tle_data(normalized)
+                cached_file = self.save_tle_to_cache(normalized, tle_data)
+            except RuntimeError as exc:
+                # Download failed (rate limit via TleRateLimitedError, network
+                # error, or server error).  Fall back to the newest cached copy
+                # when one exists -- a rate-limit 403 confirms it is still
+                # current -- so a force-refresh inside the window still works.
+                if cached_file is None:
+                    raise
+                logger.warning(
+                    "TLE download for %s failed (%s); using cached file %s.",
+                    normalized,
+                    exc,
+                    cached_file.name,
+                )
+                tle_data = cached_file.read_text(encoding="utf-8")
         else:
             tle_data = cached_file.read_text(encoding="utf-8")
 
@@ -140,17 +168,58 @@ class TleService:
         return [satellite.to_dict() for satellite in satellites], cached_file
 
     def download_tle_data(self, constellation: str) -> str:
-        """Download raw TLE text for a configured constellation."""
+        """Download raw TLE text for a configured constellation.
+
+        Tries the configured ``url`` first, then an optional ``fallback_url``
+        (e.g. a non-rate-limited ``gp.php?GROUP=`` endpoint for a constellation
+        whose primary source is the supplemental ``sup-gp.php`` endpoint, which
+        is limited to one download per file every two hours).
+
+        Raises
+        ------
+        TleRateLimitedError
+            When every candidate source refused with HTTP 403 (rate limiting).
+        RuntimeError
+            When the sources failed for any other reason.
+        """
         normalized = self._normalize_constellation(constellation)
         source = self._tle_sources().get(normalized, {})
         url = source.get("url")
         if not url:
             raise ValueError(f"No URL found for constellation: {constellation}")
 
-        response = requests.get(url, timeout=30)
-        if response.status_code != 200:
-            raise RuntimeError(f"Failed to download TLE data for {constellation}: {response.status_code}")
-        return response.text
+        candidates = [("primary", url)]
+        fallback_url = source.get("fallback_url")
+        if fallback_url:
+            candidates.append(("fallback", fallback_url))
+
+        rate_limited = False
+        failures: list[str] = []
+        for label, candidate_url in candidates:
+            try:
+                response = requests.get(candidate_url, timeout=30)
+            except requests.RequestException as exc:
+                failures.append(f"{label} {candidate_url}: {exc}")
+                continue
+            if response.status_code == 200:
+                if label != "primary":
+                    logger.warning(
+                        "TLE primary source for %s was unavailable; used %s source %s.",
+                        normalized,
+                        label,
+                        candidate_url,
+                    )
+                return response.text
+            if response.status_code == 403:
+                rate_limited = True
+            failures.append(f"{label} {candidate_url}: HTTP {response.status_code}")
+
+        detail = "; ".join(failures)
+        if rate_limited:
+            raise TleRateLimitedError(
+                f"TLE source rate-limited for {constellation}: {detail}"
+            )
+        raise RuntimeError(f"Failed to download TLE data for {constellation}: {detail}")
 
     def save_tle_to_cache(self, constellation: str, tle_data: str) -> Path:
         """Save raw TLE text to the cache and return the written path."""
