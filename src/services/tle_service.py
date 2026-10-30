@@ -8,6 +8,7 @@ separate cache, network, and parser implementations.
 from __future__ import annotations
 
 import logging
+import re
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -16,17 +17,27 @@ from typing import Mapping, Any
 import requests
 
 from src.config import Config
+from src.services.omm_csv import is_omm_csv, omm_csv_to_tle_text, to_omm_csv_url
 
 logger = logging.getLogger(__name__)
+
+# Celestrak refreshes GP data every 2 hours and allows only one download per
+# update per IP address; repeated HTTP errors (50 in 2 hours) get the IP
+# firewalled, so never request more often than this.
+MIN_DOWNLOAD_INTERVAL = timedelta(hours=2)
+
+# Celestrak GROUP names that no longer exist, mapped to their replacement.
+_RETIRED_GROUPS = {"noaa": "weather"}
 
 
 class TleRateLimitedError(RuntimeError):
     """Raised when a TLE source refuses a download due to rate limiting.
 
-    Celestrak's supplemental GP endpoint (``sup-gp.php``) returns HTTP 403 with a
-    "limit requests to once every 2 hours" message when the same ``FILE`` is
-    re-requested inside that window.  Callers can catch this and fall back to the
-    cached copy, which the same response confirms is still current.
+    Celestrak returns HTTP 403 from both the supplemental (``sup-gp.php``) and
+    the regular (``gp.php``) endpoints when the same data is re-requested from
+    the same IP address before the next 2-hourly update -- even when the earlier
+    download was made by another program or computer on the same network.
+    Callers can catch this and fall back to a cached copy.
     """
 
 
@@ -143,16 +154,42 @@ class TleService:
         """
         normalized = self._normalize_constellation(constellation)
         cached_file = self.get_cached_tle_file(normalized)
-        if force_download or cached_file is None or self.is_tle_expired(cached_file):
+        wants_download = force_download or cached_file is None or self.is_tle_expired(cached_file)
+        if wants_download and cached_file is not None and self._age(cached_file) < MIN_DOWNLOAD_INTERVAL:
+            # Celestrak has no newer data yet; a request would only be refused.
+            logger.info(
+                "TLE cache for %s is less than %s old; Celestrak updates every 2 hours, using %s.",
+                normalized,
+                MIN_DOWNLOAD_INTERVAL,
+                cached_file.name,
+            )
+            wants_download = False
+        if wants_download and self._is_blocked(normalized):
+            # A recent 403 means another request would be refused again and
+            # count toward Celestrak's firewall limit, so do not send one.
+            if cached_file is None:
+                raise TleRateLimitedError(self._rate_limit_message(normalized, self._blocked_detail(normalized)))
+            logger.warning(
+                "TLE download for %s was refused recently; using cached file %s.",
+                normalized,
+                cached_file.name,
+            )
+            wants_download = False
+
+        if wants_download:
             try:
                 tle_data = self.download_tle_data(normalized)
                 cached_file = self.save_tle_to_cache(normalized, tle_data)
+                self._blocked_marker(normalized).unlink(missing_ok=True)
             except RuntimeError as exc:
                 # Download failed (rate limit via TleRateLimitedError, network
                 # error, or server error).  Fall back to the newest cached copy
-                # when one exists -- a rate-limit 403 confirms it is still
-                # current -- so a force-refresh inside the window still works.
+                # when one exists so a refresh inside the window still works.
+                if isinstance(exc, TleRateLimitedError):
+                    self._mark_blocked(normalized, str(exc))
                 if cached_file is None:
+                    if isinstance(exc, TleRateLimitedError):
+                        raise TleRateLimitedError(self._rate_limit_message(normalized, str(exc))) from exc
                     raise
                 logger.warning(
                     "TLE download for %s failed (%s); using cached file %s.",
@@ -168,12 +205,14 @@ class TleService:
         return [satellite.to_dict() for satellite in satellites], cached_file
 
     def download_tle_data(self, constellation: str) -> str:
-        """Download raw TLE text for a configured constellation.
+        """Download three-line TLE text for a configured constellation.
 
         Tries the configured ``url`` first, then an optional ``fallback_url``
-        (e.g. a non-rate-limited ``gp.php?GROUP=`` endpoint for a constellation
-        whose primary source is the supplemental ``sup-gp.php`` endpoint, which
-        is limited to one download per file every two hours).
+        (e.g. the regular ``gp.php?GROUP=`` data for a constellation whose
+        primary source is the supplemental ``sup-gp.php`` endpoint).  Celestrak
+        URLs are requested as OMM CSV, which includes objects with 6-digit
+        catalog numbers, and converted to TLE text (see
+        :mod:`src.services.omm_csv`).
 
         Raises
         ------
@@ -188,10 +227,10 @@ class TleService:
         if not url:
             raise ValueError(f"No URL found for constellation: {constellation}")
 
-        candidates = [("primary", url)]
+        candidates = [("primary", self._current_url(url))]
         fallback_url = source.get("fallback_url")
         if fallback_url:
-            candidates.append(("fallback", fallback_url))
+            candidates.append(("fallback", self._current_url(fallback_url)))
 
         rate_limited = False
         failures: list[str] = []
@@ -202,6 +241,14 @@ class TleService:
                 failures.append(f"{label} {candidate_url}: {exc}")
                 continue
             if response.status_code == 200:
+                tle_data = omm_csv_to_tle_text(response.text) if is_omm_csv(response.text) else response.text
+                if not self.parse_tle_text(tle_data, normalized):
+                    # Celestrak answers some bad queries with HTTP 200 and a
+                    # message such as 'Invalid query: ... not found'; never
+                    # cache that as satellite data.
+                    reason = " ".join(response.text.split())[:200]
+                    failures.append(f"{label} {candidate_url}: HTTP 200 without satellite data ({reason})")
+                    continue
                 if label != "primary":
                     logger.warning(
                         "TLE primary source for %s was unavailable; used %s source %s.",
@@ -209,10 +256,16 @@ class TleService:
                         label,
                         candidate_url,
                     )
-                return response.text
+                return tle_data
+            failure = f"{label} {candidate_url}: HTTP {response.status_code}"
             if response.status_code == 403:
                 rate_limited = True
-            failures.append(f"{label} {candidate_url}: HTTP {response.status_code}")
+                # Celestrak explains the refusal in the body, e.g. "...since
+                # your last successful download of GROUP=starlink at <time>".
+                reason = " ".join(response.text.split())[:200]
+                if reason:
+                    failure = f"{failure} ({reason})"
+            failures.append(failure)
 
         detail = "; ".join(failures)
         if rate_limited:
@@ -260,6 +313,56 @@ class TleService:
             if satellite.name == satellite_name:
                 return satellite.to_dict()
         return None
+
+    def _current_url(self, url: str) -> str:
+        """Upgrade a URL saved by an older version to the current Celestrak form.
+
+        Saved user preferences override the bundled defaults, so they may still
+        request ``FORMAT=tle`` or a retired ``GROUP``.
+        """
+        upgraded = to_omm_csv_url(url)
+        for old_group, new_group in _RETIRED_GROUPS.items():
+            upgraded = re.sub(
+                rf"([?&]GROUP=){old_group}(?=&|$)", rf"\g<1>{new_group}", upgraded, flags=re.IGNORECASE
+            )
+        return upgraded
+
+    def _age(self, path: Path) -> timedelta:
+        """Return how long ago a file was last modified."""
+        last_modified = datetime.fromtimestamp(path.stat().st_mtime, tz=timezone.utc)
+        return datetime.now(timezone.utc) - last_modified
+
+    def _blocked_marker(self, constellation: str) -> Path:
+        """Return the marker file recording a recent rate-limit refusal."""
+        return self.cache_dir / f"tle_{constellation}.blocked"
+
+    def _mark_blocked(self, constellation: str, detail: str) -> None:
+        """Record a rate-limit refusal so no request is sent for a while."""
+        try:
+            self._blocked_marker(constellation).write_text(detail, encoding="utf-8")
+        except OSError as exc:  # pragma: no cover - cache dir not writable
+            logger.warning("Unable to record TLE rate limit for %s: %s", constellation, exc)
+
+    def _is_blocked(self, constellation: str) -> bool:
+        """Return whether a rate-limit refusal was recorded recently."""
+        marker = self._blocked_marker(constellation)
+        return marker.exists() and self._age(marker) < MIN_DOWNLOAD_INTERVAL
+
+    def _blocked_detail(self, constellation: str) -> str:
+        """Return the recorded refusal detail, or an empty string."""
+        try:
+            return self._blocked_marker(constellation).read_text(encoding="utf-8")
+        except OSError:
+            return ""
+
+    def _rate_limit_message(self, constellation: str, detail: str) -> str:
+        """Return a user-facing explanation for a rate-limited download."""
+        message = (
+            "Celestrak allows one download per data update (every ~2 hours) per network. "
+            f"Another app or computer on your network has already downloaded {constellation.upper()} "
+            "and there is no cached copy here. Try again after the next update."
+        )
+        return f"{message} Details: {detail}" if detail else message
 
     def _resolve_cache_dir(self, configured_cache_dir: object) -> Path:
         """Resolve a configured cache directory against the repository root."""
