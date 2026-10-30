@@ -99,7 +99,11 @@ class GuiRuntimePaths:
             defaults_path=resolved_resource_root / "config" / "config.json",
             user_preferences_path=resolved_user_data_root / "user_preferences.json",
             user_locations_path=resolved_user_data_root / "user_locations.json",
-            tle_cache_dir=resolved_user_data_root / "tle",
+            tle_cache_dir=(
+                resolved_user_data_root / "tle"
+                if user_data_root is not None
+                else cls._shared_user_data_root() / "tle"
+            ),
             frozen=is_frozen,
         )
 
@@ -111,27 +115,31 @@ class GuiRuntimePaths:
         ----------
         configured_path : object
             Configured ``tle_folder`` value. Absolute paths remain absolute.
-            Relative source paths remain repository-relative. Relative frozen
-            paths are redirected below the per-user data root; a leading
-            ``data`` component is removed to avoid ``data/data`` nesting.
+            Relative paths are redirected below the shared per-user data root
+            in both source and frozen mode; a leading ``data`` component is
+            removed to avoid ``data/data`` nesting.
 
         Returns
         -------
         pathlib.Path
             Writable cache directory for the active runtime.
+
+        Notes
+        -----
+        Celestrak allows one download per data update per IP address, so source
+        checkouts, worktrees, and the frozen executable share one TLE cache
+        instead of each starting empty and being refused.
         """
 
         path = Path(str(configured_path or "data/tle"))
         if path.is_absolute():
             return path
-        if not self.frozen:
-            return self.resource_root / path
 
         parts = path.parts
         if parts and parts[0].lower() == "data":
             parts = parts[1:]
         relative = Path(*parts) if parts else Path("tle")
-        return self.user_data_root / relative
+        return self.tle_cache_dir.parent / relative
 
     @staticmethod
     def _default_resource_root(frozen: bool) -> Path:
@@ -154,6 +162,16 @@ class GuiRuntimePaths:
 
         if not frozen:
             return resource_root / "data"
+
+        return GuiRuntimePaths._shared_user_data_root()
+
+    @staticmethod
+    def _shared_user_data_root() -> Path:
+        """Return the per-user data root shared by all installs and checkouts."""
+
+        override = os.environ.get("LEOSAT_USER_DATA_DIR")
+        if override:
+            return Path(override).expanduser().resolve()
 
         local_app_data = os.environ.get("LOCALAPPDATA")
         if local_app_data:
